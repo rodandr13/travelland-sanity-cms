@@ -1,1 +1,3 @@
-export const schemaTypes = []
+import excursion from './excursion'
+
+export const schemaTypes = [excursion]
