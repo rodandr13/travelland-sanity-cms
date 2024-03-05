@@ -10,11 +10,5 @@ export default defineType({
       type: 'string',
       title: 'Name',
     }),
-    defineField({
-      name: 'cities',
-      type: 'array',
-      title: 'Cities',
-      of: [{type: 'reference', to: [{type: 'city'}]}],
-    }),
   ],
 })

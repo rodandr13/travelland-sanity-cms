@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import meetingPlaces from './meetingPlaces'
 
 export default defineType({
   name: 'excursion',
@@ -31,6 +30,13 @@ export default defineType({
       name: 'slug',
       type: 'string',
       title: 'Slug',
+      group: 'content',
+    }),
+    defineField({
+      name: 'city',
+      type: 'reference',
+      title: 'Excursion starting city',
+      to: [{type: 'city'}],
       group: 'content',
     }),
     defineField({
