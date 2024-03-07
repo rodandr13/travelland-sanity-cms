@@ -11,12 +11,20 @@ export default defineType({
       default: true,
     },
     {
+      name: 'options',
+      title: 'Options',
+    },
+    {
       name: 'seo',
       title: 'SEO',
     },
     {
       name: 'media',
       title: 'Media',
+    },
+    {
+      name: 'schedule',
+      title: 'Schedule',
     },
   ],
   fields: [
@@ -37,7 +45,21 @@ export default defineType({
       type: 'reference',
       title: 'Excursion starting city',
       to: [{type: 'city'}],
-      group: 'content',
+      group: 'options',
+    }),
+    defineField({
+      name: 'whatsIncluded',
+      type: 'array',
+      title: 'Whats included',
+      of: [{type: 'reference', to: [{type: 'whatsIncluded'}]}],
+      group: 'options',
+    }),
+    defineField({
+      name: 'surcharges',
+      type: 'array',
+      title: 'Surcharges',
+      of: [{type: 'reference', to: [{type: 'surcharges'}]}],
+      group: 'options',
     }),
     defineField({
       name: 'description',
@@ -99,8 +121,15 @@ export default defineType({
       name: 'meetingPoint',
       type: 'reference',
       title: 'Meeting Point',
-      group: 'content',
+      group: 'options',
       to: [{type: 'meetingPlaces'}],
+    }),
+    defineField({
+      name: 'schedule',
+      type: 'reference',
+      title: 'Schedule',
+      group: 'schedule',
+      to: [{type: 'schedule'}],
     }),
   ],
 })
