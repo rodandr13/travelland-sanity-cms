@@ -1,11 +1,38 @@
-import {defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
+import {WeekdaysInput} from '../components/WeekdayPicker'
 
 export default defineType({
   name: 'schedule',
   title: 'Schedule',
   type: 'document',
   fields: [
-    {
+    defineField({
+      name: 'name',
+      type: 'string',
+      title: 'Name',
+    }),
+    defineField({
+      name: 'daysOfWeek',
+      type: 'array',
+      title: 'Days',
+      description: 'Days of the week for excursions',
+      of: [
+        {
+          type: 'object',
+          fields: [
+            {
+              name: 'name',
+              type: 'string',
+              title: 'Day',
+            },
+          ],
+        },
+      ],
+      components: {
+        input: WeekdaysInput,
+      },
+    }),
+    defineField({
       name: 'validityDates',
       title: 'Validity Dates',
       type: 'object',
@@ -13,8 +40,8 @@ export default defineType({
         {name: 'start', type: 'date', title: 'Start Date'},
         {name: 'end', type: 'date', title: 'End Date'},
       ],
-    },
-    {
+    }),
+    defineField({
       name: 'standardSchedule',
       title: 'Standard Schedule',
       type: 'array',
@@ -47,6 +74,6 @@ export default defineType({
           ],
         },
       ],
-    },
+    }),
   ],
 })

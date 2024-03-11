@@ -1,18 +1,22 @@
 {
   "root": true,
-  "env": { "browser": true, "es2020": true },
+  "env": {
+    "browser": true,
+    "es2020": true
+  },
   "extends": [
-    "@sanity/eslint-config-studio",
     "eslint:recommended",
-    "plugin:@typescript-eslint/recommended",
+    // "plugin:@typescript-eslint/recommended",
     "plugin:react-hooks/recommended",
-    "airbnb",
-    "airbnb/hooks",
-    "airbnb-typescript",
+    "@sanity/eslint-config-studio",
     "plugin:react/recommended",
-    "plugin:prettier/recommended",
+    "plugin:prettier/recommended"
   ],
-  "ignorePatterns": ["dist", ".eslintrc.cjs", "vite.config.ts"],
+  "ignorePatterns": [
+    "dist",
+    ".eslintrc.cjs",
+    "vite.config.ts"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -21,16 +25,20 @@
     "react",
     "react-hooks",
     "react-refresh",
-    "prettier",
+    "prettier"
   ],
   "rules": {
     "react-refresh/only-export-components": [
       "warn",
-      { "allowConstantExport": true }
+      {
+        "allowConstantExport": true
+      }
     ],
     "import/prefer-default-export": [
       "off",
-      { "target": "single" }
+      {
+        "target": "single"
+      }
     ],
     "react/react-in-jsx-scope": "off"
   }
