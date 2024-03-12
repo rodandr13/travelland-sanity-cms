@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import {WeekdaysInput} from '../components/WeekdayPicker'
 
 export default defineType({
@@ -17,8 +17,9 @@ export default defineType({
       title: 'Days',
       description: 'Days of the week for excursions',
       of: [
-        {
+        defineArrayMember({
           type: 'object',
+          name: 'day',
           fields: [
             {
               name: 'name',
@@ -26,7 +27,7 @@ export default defineType({
               title: 'Day',
             },
           ],
-        },
+        }),
       ],
       components: {
         input: WeekdaysInput,
@@ -46,7 +47,7 @@ export default defineType({
       title: 'Standard Schedule',
       type: 'array',
       of: [
-        {
+        defineArrayMember({
           type: 'object',
           fields: [
             {name: 'duration', type: 'string', title: 'Duration'},
@@ -72,7 +73,7 @@ export default defineType({
               ],
             },
           ],
-        },
+        }),
       ],
     }),
   ],
