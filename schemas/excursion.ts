@@ -58,7 +58,7 @@ export default defineType({
       name: 'surcharges',
       type: 'array',
       title: 'Surcharges',
-      of: [{type: 'reference', to: [{type: 'string'}]}],
+      of: [{type: 'reference', to: [{type: 'surcharges'}]}],
       group: 'options',
     }),
     defineField({

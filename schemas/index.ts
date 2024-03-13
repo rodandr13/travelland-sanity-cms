@@ -6,6 +6,10 @@ import whatsIncluded from './whatsIncluded'
 import surcharges from './surcharges'
 import schedule from './schedule'
 import {weekdaysSelectorType} from './weekdaysSelectorType'
+import {timeValueType} from './duration/timeValueType'
+import {categoryType} from './categoryType'
+import {durationType} from './duration/durationType'
+import {startTimeType} from './startTimeType'
 
 export const schemaTypes = [
   excursion,
@@ -16,4 +20,8 @@ export const schemaTypes = [
   surcharges,
   schedule,
   weekdaysSelectorType,
+  timeValueType,
+  categoryType,
+  durationType,
+  startTimeType,
 ]
