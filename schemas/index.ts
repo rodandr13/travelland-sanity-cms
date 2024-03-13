@@ -5,6 +5,7 @@ import meetingPlaces from './meetingPlace'
 import whatsIncluded from './whatsIncluded'
 import surcharges from './surcharges'
 import schedule from './schedule'
+import {weekdaysSelectorType} from './weekdaysSelectorType'
 
 export const schemaTypes = [
   excursion,
@@ -14,4 +15,5 @@ export const schemaTypes = [
   whatsIncluded,
   surcharges,
   schedule,
+  weekdaysSelectorType,
 ]

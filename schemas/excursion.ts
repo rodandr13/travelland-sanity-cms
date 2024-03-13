@@ -126,10 +126,10 @@ export default defineType({
     }),
     defineField({
       name: 'schedule',
-      type: 'reference',
       title: 'Schedule',
+      type: 'array',
+      of: [{type: 'schedule'}],
       group: 'schedule',
-      to: [{type: 'schedule'}],
     }),
   ],
 })

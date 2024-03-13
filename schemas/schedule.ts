@@ -1,80 +1,45 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
-import {WeekdaysInput} from '../components/WeekdayPicker'
+import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'schedule',
   title: 'Schedule',
-  type: 'document',
+  type: 'object',
   fields: [
     defineField({
       name: 'name',
       type: 'string',
-      title: 'Name',
+      title: 'Title',
     }),
     defineField({
-      name: 'daysOfWeek',
-      type: 'array',
-      title: 'Days',
-      description: 'Days of the week for excursions',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          name: 'day',
-          fields: [
-            {
-              name: 'name',
-              type: 'string',
-              title: 'Day',
-            },
-          ],
+      name: 'dates',
+      title: 'Dates',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'dateFrom',
+          type: 'date',
+          title: 'From',
+          options: {
+            dateFormat: 'DD/MM/YYYY',
+          },
+        }),
+        defineField({
+          name: 'dateTo',
+          type: 'date',
+          title: 'To',
+          options: {
+            dateFormat: 'DD/MM/YYYY',
+          },
         }),
       ],
-      components: {
-        input: WeekdaysInput,
+      options: {
+        columns: 2,
       },
     }),
     defineField({
-      name: 'validityDates',
-      title: 'Validity Dates',
-      type: 'object',
-      fields: [
-        {name: 'start', type: 'date', title: 'Start Date'},
-        {name: 'end', type: 'date', title: 'End Date'},
-      ],
-    }),
-    defineField({
-      name: 'standardSchedule',
-      title: 'Standard Schedule',
-      type: 'array',
-      of: [
-        defineArrayMember({
-          type: 'object',
-          fields: [
-            {name: 'duration', type: 'string', title: 'Duration'},
-            {name: 'startTime', type: 'string', title: 'Start Time'},
-            {
-              name: 'daysOfWeek',
-              title: 'Days of Week',
-              type: 'array',
-              of: [{type: 'string'}],
-            },
-            {
-              name: 'prices',
-              title: 'Prices',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  fields: [
-                    {name: 'category', type: 'string', title: 'Category'},
-                    {name: 'price', type: 'number', title: 'Price'},
-                  ],
-                },
-              ],
-            },
-          ],
-        }),
-      ],
+      name: 'weekdays',
+      type: 'weekdaysSelector',
+      title: 'Days of the week',
     }),
   ],
 })
