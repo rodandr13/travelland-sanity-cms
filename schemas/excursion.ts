@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import isUniqueSlugByType from '../utils/isUniqueSlugByType'
 
 export default defineType({
   name: 'excursion',
@@ -29,16 +30,20 @@ export default defineType({
   ],
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       type: 'string',
-      title: 'Name',
+      title: 'Title',
       group: 'content',
     }),
     defineField({
       name: 'slug',
-      type: 'string',
+      type: 'slug',
       title: 'Slug',
       group: 'content',
+      options: {
+        source: 'title',
+        isUnique: isUniqueSlugByType,
+      },
     }),
     defineField({
       name: 'city',
