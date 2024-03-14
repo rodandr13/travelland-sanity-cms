@@ -1,10 +1,22 @@
 import {defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../utils/isUniqueSlugByType'
 
-export default defineType({
+export const excursionType = defineType({
   name: 'excursion',
   type: 'document',
   title: 'Excursion',
+  preview: {
+    select: {
+      image: 'gallery.0.asset',
+      title: 'title',
+    },
+    prepare: ({image, title}) => {
+      return {
+        title: title,
+        media: image,
+      }
+    },
+  },
   groups: [
     {
       name: 'content',
@@ -128,6 +140,13 @@ export default defineType({
       title: 'Meeting Point',
       group: 'options',
       to: [{type: 'meetingPlaces'}],
+    }),
+    defineField({
+      name: 'route',
+      type: 'array',
+      title: 'Excursion route',
+      of: [{type: 'reference', to: [{type: 'place'}]}],
+      group: 'options',
     }),
     defineField({
       name: 'schedule',

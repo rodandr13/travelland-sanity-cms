@@ -1,14 +1,16 @@
 import {defineField, defineType} from 'sanity'
+import {GenerateIcon} from '@sanity/icons'
 
-export default defineType({
+export const meetingPlaceType = defineType({
   name: 'meetingPlaces',
   type: 'document',
   title: 'Meeting places',
+  icon: GenerateIcon,
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       type: 'string',
-      title: 'Name',
+      title: 'Title',
     }),
     defineField({
       name: 'description',

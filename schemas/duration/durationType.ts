@@ -8,6 +8,17 @@ export const durationType = defineType({
   icon: ClockIcon,
   description: 'Duration of the excursion in hours',
   __experimental_formPreviewTitle: false,
+  preview: {
+    select: {
+      hours: 'hours',
+    },
+    prepare: (selection) => {
+      const {hours} = selection
+      return {
+        title: `${hours} hours`,
+      }
+    },
+  },
   fields: [
     defineField({
       name: 'hours',
@@ -15,16 +26,4 @@ export const durationType = defineType({
       type: 'number',
     }),
   ],
-  preview: {
-    select: {
-      hours: 'hours',
-    },
-    prepare: (selection) => {
-      console.log('selection', selection)
-      const {hours} = selection
-      return {
-        title: `${hours} hours`,
-      }
-    },
-  },
 })

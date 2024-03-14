@@ -1,7 +1,7 @@
 import {defineField, defineType, defineArrayMember} from 'sanity'
 import {ThListIcon} from '@sanity/icons'
 
-export default defineType({
+export const scheduleType = defineType({
   name: 'schedule',
   title: 'Schedule',
   type: 'object',
