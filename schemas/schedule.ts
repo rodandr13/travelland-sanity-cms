@@ -1,13 +1,14 @@
 import {defineField, defineType, defineArrayMember} from 'sanity'
-import {Rule} from 'postcss'
+import {ThListIcon} from '@sanity/icons'
 
 export default defineType({
   name: 'schedule',
   title: 'Schedule',
   type: 'object',
+  icon: ThListIcon,
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       type: 'string',
       title: 'Title',
     }),
@@ -46,7 +47,11 @@ export default defineType({
       name: 'startTime',
       type: 'reference',
       title: 'Time start',
-      to: [{type: 'startTime'}],
+      to: [
+        {
+          type: 'startTime',
+        },
+      ],
     }),
     defineField({
       name: 'duration',
@@ -63,12 +68,21 @@ export default defineType({
           type: 'object',
           name: 'price',
           title: 'Price',
+          preview: {
+            select: {
+              categoryTitle: 'category.title',
+              categoryDescription: 'category.description',
+              price: 'price',
+            },
+            prepare: (selection) => {
+              const {categoryTitle, categoryDescription, price} = selection
+              return {
+                title: `${categoryTitle} | ${price}$`,
+                subtitle: categoryDescription,
+              }
+            },
+          },
           fields: [
-            defineField({
-              type: 'string',
-              name: 'title',
-              title: 'Title',
-            }),
             defineField({
               type: 'reference',
               name: 'category',
