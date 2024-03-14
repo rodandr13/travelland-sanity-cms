@@ -6,9 +6,9 @@ export default defineType({
   title: 'City',
   fields: [
     defineField({
-      name: 'name',
+      name: 'title',
       type: 'string',
-      title: 'Name',
+      title: 'Title',
     }),
     defineField({
       name: 'country',

@@ -65,6 +65,11 @@ export default defineType({
           title: 'Price',
           fields: [
             defineField({
+              type: 'string',
+              name: 'title',
+              title: 'Title',
+            }),
+            defineField({
               type: 'reference',
               name: 'category',
               title: 'Category',

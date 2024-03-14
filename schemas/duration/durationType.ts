@@ -7,6 +7,11 @@ export const durationType = defineType({
   description: 'Duration of the excursion in hours',
   fields: [
     defineField({
+      name: 'title',
+      title: 'Title',
+      type: 'string',
+    }),
+    defineField({
       name: 'hours',
       title: 'Hours',
       type: 'number',
