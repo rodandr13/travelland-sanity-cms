@@ -65,17 +65,17 @@ export const excursionType = defineType({
       group: 'options',
     }),
     defineField({
-      name: 'whatsIncluded',
+      name: 'included',
       type: 'array',
       title: 'Whats included',
-      of: [{type: 'reference', to: [{type: 'whatsIncluded'}]}],
+      of: [{type: 'reference', to: [{type: 'included'}]}],
       group: 'options',
     }),
     defineField({
-      name: 'surcharges',
+      name: 'surcharge',
       type: 'array',
       title: 'Surcharges',
-      of: [{type: 'reference', to: [{type: 'surcharges'}]}],
+      of: [{type: 'reference', to: [{type: 'surcharge'}]}],
       group: 'options',
     }),
     defineField({

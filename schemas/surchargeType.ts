@@ -2,9 +2,9 @@ import {defineField, defineType} from 'sanity'
 import {CloseIcon} from '@sanity/icons'
 
 export const surchargeType = defineType({
-  name: 'surcharges',
+  name: 'surcharge',
   type: 'document',
-  title: 'Surcharges',
+  title: 'Surcharge',
   icon: CloseIcon,
   fields: [
     defineField({

@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 import {CheckmarkIcon} from '@sanity/icons'
 
 export const includedType = defineType({
-  name: 'whatsIncluded',
+  name: 'included',
   type: 'document',
   title: 'Whats included',
   icon: CheckmarkIcon,

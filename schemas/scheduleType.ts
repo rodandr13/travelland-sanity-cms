@@ -1,5 +1,5 @@
 import {defineField, defineType, defineArrayMember} from 'sanity'
-import {ThListIcon} from '@sanity/icons'
+import {ThListIcon, UserIcon} from '@sanity/icons'
 
 export const scheduleType = defineType({
   name: 'schedule',
@@ -79,6 +79,7 @@ export const scheduleType = defineType({
               return {
                 title: `${categoryTitle} | ${price}$`,
                 subtitle: categoryDescription,
+                media: UserIcon,
               }
             },
           },
