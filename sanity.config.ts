@@ -1,9 +1,11 @@
-import {defineConfig} from 'sanity'
+import {defineConfig, isKeySegment} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {media} from 'sanity-plugin-media'
 import {googleMapsInput} from '@sanity/google-maps-input'
 import {schemaTypes} from './schemas'
+import {internationalizedArray} from 'sanity-plugin-internationalized-array'
+import {languageFilter} from '@sanity/language-filter'
 import {MdApartment, MdTour, MdRoom, MdMap} from 'react-icons/md'
 import {TagIcon} from '@sanity/icons'
 import './styles.css'
@@ -88,6 +90,51 @@ export default defineConfig({
     media(),
     googleMapsInput({
       apiKey: 'AIzaSyBx7lPY5LJ3HDcByxeCWBcLUjlnUjv8oTU',
+    }),
+    internationalizedArray({
+      languages: [
+        {id: 'ru', title: 'Russian'},
+        {id: 'en', title: 'English'},
+        {id: 'cz', title: 'Czech'},
+      ],
+      defaultLanguages: ['en'],
+      fieldTypes: ['string', 'text'],
+    }),
+    languageFilter({
+      // Use the same languages as the internationalized array plugin
+      supportedLanguages: [
+        {id: 'ru', title: 'Russian'},
+        {id: 'en', title: 'English'},
+        {id: 'cz', title: 'Czech'},
+      ],
+      defaultLanguages: ['en'],
+      documentTypes: ['excursion'],
+      filterField: (enclosingType, member, selectedLanguageIds) => {
+        // Filter internationalized arrays
+        if (
+          enclosingType.jsonType === 'object' &&
+          enclosingType.name.startsWith('internationalizedArray') &&
+          'kind' in member
+        ) {
+          // Get last two segments of the field's path
+          const pathEnd = member.field.path.slice(-2)
+          // If the second-last segment is a _key, and the last segment is `value`,
+          // It's an internationalized array value
+          // And the array _key is the language of the field
+          const language =
+            pathEnd[1] === 'value' && isKeySegment(pathEnd[0]) ? pathEnd[0]._key : null
+
+          return language ? selectedLanguageIds.includes(language) : false
+        }
+
+        // Filter internationalized objects if you have them
+        // `localeString` must be registered as a custom schema type
+        if (enclosingType.jsonType === 'object' && enclosingType.name.startsWith('locale')) {
+          return selectedLanguageIds.includes(member.name)
+        }
+
+        return true
+      },
     }),
   ],
   schema: {

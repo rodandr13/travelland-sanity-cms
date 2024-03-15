@@ -123,15 +123,8 @@ export const excursionType = defineType({
       },
     }),
     defineField({
-      name: 'seoTitle',
-      type: 'string',
-      title: 'Title',
-      group: 'seo',
-    }),
-    defineField({
-      name: 'seoDescription',
-      type: 'text',
-      title: 'Description',
+      name: 'seo',
+      type: 'seo',
       group: 'seo',
     }),
     defineField({

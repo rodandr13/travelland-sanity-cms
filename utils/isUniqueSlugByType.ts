@@ -1,4 +1,5 @@
 export default async function isUniqueSlugByType(slug, context) {
+  console.log('slug')
   const {document, getClient} = context
   const client = getClient({apiVersion: '2022-03-07'})
   const documentType = document._type

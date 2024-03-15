@@ -11,6 +11,7 @@ import {categoryType} from './categoryType'
 import {durationType} from './duration/durationType'
 import {startTimeType} from './startTimeType'
 import {placeType} from './placeType'
+import {seoType} from './seoType'
 
 export const schemaTypes = [
   excursionType,
@@ -26,4 +27,5 @@ export const schemaTypes = [
   durationType,
   startTimeType,
   placeType,
+  seoType,
 ]
