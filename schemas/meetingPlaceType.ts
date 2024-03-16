@@ -6,15 +6,16 @@ export const meetingPlaceType = defineType({
   type: 'document',
   title: 'Meeting places',
   icon: GenerateIcon,
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'internationalizedArrayString',
       title: 'Title',
     }),
     defineField({
       name: 'description',
-      type: 'text',
+      type: 'internationalizedArrayText',
       title: 'Description',
     }),
     defineField({

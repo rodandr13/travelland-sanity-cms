@@ -6,15 +6,8 @@ export const startTimeType = defineType({
   title: 'Start time',
   type: 'document',
   description: 'Excursion start time',
-  __experimental_formPreviewTitle: false,
   icon: CircleIcon,
-  fields: [
-    defineField({
-      name: 'time',
-      title: 'Time',
-      type: 'timeValue',
-    }),
-  ],
+  __experimental_formPreviewTitle: false,
   preview: {
     select: {
       time: 'time',
@@ -27,4 +20,11 @@ export const startTimeType = defineType({
       }
     },
   },
+  fields: [
+    defineField({
+      name: 'time',
+      title: 'Time',
+      type: 'timeValue',
+    }),
+  ],
 })

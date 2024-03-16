@@ -5,7 +5,7 @@ export const seoType = defineType({
   title: 'SEO',
   type: 'object',
   fields: [
-    defineField({name: 'title', type: 'internationalizedArrayString'}),
-    defineField({name: 'description', type: 'internationalizedArrayText'}),
+    defineField({name: 'title', type: 'string'}),
+    defineField({name: 'description', type: 'text'}),
   ],
 })

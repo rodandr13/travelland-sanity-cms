@@ -6,10 +6,11 @@ export const includedType = defineType({
   type: 'document',
   title: 'Whats included',
   icon: CheckmarkIcon,
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'internationalizedArrayString',
       title: 'Title',
     }),
   ],

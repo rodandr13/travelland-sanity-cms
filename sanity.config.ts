@@ -44,6 +44,14 @@ export default defineConfig({
                       .title('Duration')
                       .child(S.documentTypeList('duration')),
                     S.listItem()
+                      .schemaType('excursionCategory')
+                      .title('Excursion category')
+                      .child(S.documentTypeList('excursionCategory')),
+                    S.listItem()
+                      .schemaType('excursionSubcategory')
+                      .title('Excursion subcategory')
+                      .child(S.documentTypeList('excursionSubcategory')),
+                    S.listItem()
                       .icon(TagIcon)
                       .schemaType('media.tag')
                       .title('Media tags')
@@ -81,6 +89,8 @@ export default defineConfig({
                   'duration',
                   'startTime',
                   'media.tag',
+                  'excursionCategory',
+                  'excursionSubcategory',
                 ].includes(item.spec.id),
             ),
           ])
@@ -92,23 +102,16 @@ export default defineConfig({
       apiKey: 'AIzaSyBx7lPY5LJ3HDcByxeCWBcLUjlnUjv8oTU',
     }),
     internationalizedArray({
-      languages: [
-        {id: 'ru', title: 'Russian'},
-        {id: 'en', title: 'English'},
-        {id: 'cz', title: 'Czech'},
-      ],
-      defaultLanguages: ['en'],
+      languages: [{id: 'ru', title: 'Russian'}],
+      defaultLanguages: ['ru'],
       fieldTypes: ['string', 'text'],
+      buttonAddAll: false,
     }),
     languageFilter({
       // Use the same languages as the internationalized array plugin
-      supportedLanguages: [
-        {id: 'ru', title: 'Russian'},
-        {id: 'en', title: 'English'},
-        {id: 'cz', title: 'Czech'},
-      ],
-      defaultLanguages: ['en'],
-      documentTypes: ['excursion'],
+      supportedLanguages: [{id: 'ru', title: 'Russian'}],
+      defaultLanguages: ['ru'],
+      documentTypes: ['excursion', 'category'],
       filterField: (enclosingType, member, selectedLanguageIds) => {
         // Filter internationalized arrays
         if (

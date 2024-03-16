@@ -6,10 +6,11 @@ export const surchargeType = defineType({
   type: 'document',
   title: 'Surcharge',
   icon: CloseIcon,
+  __experimental_formPreviewTitle: false,
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'internationalizedArrayString',
       title: 'Title',
     }),
   ],

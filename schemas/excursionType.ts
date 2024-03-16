@@ -1,10 +1,11 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../utils/isUniqueSlugByType'
 
 export const excursionType = defineType({
   name: 'excursion',
   type: 'document',
   title: 'Excursion',
+  __experimental_formPreviewTitle: false,
   preview: {
     select: {
       image: 'gallery.0.asset',
@@ -58,6 +59,20 @@ export const excursionType = defineType({
       },
     }),
     defineField({
+      name: 'excursionCategory',
+      type: 'reference',
+      title: 'Type',
+      to: [{type: 'excursionCategory'}],
+      group: 'options',
+    }),
+    defineField({
+      name: 'excursionSubcategory',
+      type: 'array',
+      title: 'Subtype',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionSubcategory'}]})],
+      group: 'options',
+    }),
+    defineField({
       name: 'city',
       type: 'reference',
       title: 'Excursion starting city',
@@ -68,14 +83,14 @@ export const excursionType = defineType({
       name: 'included',
       type: 'array',
       title: 'Whats included',
-      of: [{type: 'reference', to: [{type: 'included'}]}],
+      of: [defineArrayMember({type: 'reference', to: [{type: 'included'}]})],
       group: 'options',
     }),
     defineField({
       name: 'surcharge',
       type: 'array',
       title: 'Surcharges',
-      of: [{type: 'reference', to: [{type: 'surcharge'}]}],
+      of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
       group: 'options',
     }),
     defineField({
@@ -84,13 +99,9 @@ export const excursionType = defineType({
       title: 'Description',
       group: 'content',
       of: [
-        {
+        defineArrayMember({
           type: 'block',
-          lists: [
-            {title: 'Bullet', value: 'bullet'},
-            {title: 'Numbered', value: 'number'},
-          ],
-        },
+        }),
       ],
     }),
     defineField({
@@ -99,24 +110,12 @@ export const excursionType = defineType({
       title: 'Gallery',
       group: 'media',
       of: [
-        {
+        defineArrayMember({
           type: 'image',
-          fields: [
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            },
-            {
-              name: 'attribution',
-              type: 'string',
-              title: 'Attribution',
-            },
-          ],
           options: {
             hotspot: true,
           },
-        },
+        }),
       ],
       options: {
         layout: 'grid',
@@ -138,14 +137,14 @@ export const excursionType = defineType({
       name: 'route',
       type: 'array',
       title: 'Excursion route',
-      of: [{type: 'reference', to: [{type: 'place'}]}],
+      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
       group: 'options',
     }),
     defineField({
       name: 'schedule',
       title: 'Schedule',
       type: 'array',
-      of: [{type: 'schedule'}],
+      of: [defineArrayMember({type: 'schedule'})],
       group: 'schedule',
     }),
   ],

@@ -70,8 +70,8 @@ export const scheduleType = defineType({
           title: 'Price',
           preview: {
             select: {
-              categoryTitle: 'category.title',
-              categoryDescription: 'category.description',
+              categoryTitle: 'category.title.0.value',
+              categoryDescription: 'category.description.0.value',
               price: 'price',
             },
             prepare: (selection) => {

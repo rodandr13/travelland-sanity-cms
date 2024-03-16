@@ -1,9 +1,10 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const cityType = defineType({
   name: 'city',
   type: 'document',
   title: 'City',
+  __experimental_formPreviewTitle: false,
   preview: {
     select: {
       image: 'gallery.0.asset',
@@ -19,8 +20,9 @@ export const cityType = defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'country',
@@ -33,24 +35,12 @@ export const cityType = defineType({
       type: 'array',
       title: 'Gallery',
       of: [
-        {
+        defineArrayMember({
           type: 'image',
-          fields: [
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            },
-            {
-              name: 'attribution',
-              type: 'string',
-              title: 'Attribution',
-            },
-          ],
           options: {
             hotspot: true,
           },
-        },
+        }),
       ],
       options: {
         layout: 'grid',

@@ -1,9 +1,10 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const placeType = defineType({
   name: 'place',
   title: 'Place',
   type: 'document',
+  __experimental_formPreviewTitle: false,
   preview: {
     select: {
       image: 'gallery.0.asset',
@@ -19,12 +20,12 @@ export const placeType = defineType({
   fields: [
     defineField({
       name: 'title',
-      type: 'string',
+      type: 'internationalizedArrayString',
       title: 'Title',
     }),
     defineField({
       name: 'description',
-      type: 'string',
+      type: 'internationalizedArrayText',
       title: 'Description',
     }),
     defineField({
@@ -32,24 +33,12 @@ export const placeType = defineType({
       type: 'array',
       title: 'Gallery',
       of: [
-        {
+        defineArrayMember({
           type: 'image',
-          fields: [
-            {
-              name: 'caption',
-              type: 'string',
-              title: 'Caption',
-            },
-            {
-              name: 'attribution',
-              type: 'string',
-              title: 'Attribution',
-            },
-          ],
           options: {
             hotspot: true,
           },
-        },
+        }),
       ],
       options: {
         layout: 'grid',
