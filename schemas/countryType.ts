@@ -8,7 +8,7 @@ export const countryType = defineType({
   preview: {
     select: {
       image: 'gallery.0.asset',
-      title: 'title',
+      title: 'title.0.value',
     },
     prepare: ({image, title}) => {
       return {

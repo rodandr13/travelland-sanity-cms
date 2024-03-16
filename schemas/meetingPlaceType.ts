@@ -7,6 +7,17 @@ export const meetingPlaceType = defineType({
   title: 'Meeting places',
   icon: GenerateIcon,
   __experimental_formPreviewTitle: false,
+  preview: {
+    select: {
+      title: 'title.0.value',
+    },
+    prepare: (selection) => {
+      const {title} = selection
+      return {
+        title: title,
+      }
+    },
+  },
   fields: [
     defineField({
       name: 'title',
