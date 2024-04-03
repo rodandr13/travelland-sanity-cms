@@ -95,14 +95,9 @@ export const excursionType = defineType({
     }),
     defineField({
       name: 'description',
-      type: 'array',
+      type: 'text',
       title: 'Description',
       group: 'content',
-      of: [
-        defineArrayMember({
-          type: 'block',
-        }),
-      ],
     }),
     defineField({
       name: 'gallery',

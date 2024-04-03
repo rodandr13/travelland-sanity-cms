@@ -22,5 +22,13 @@ export const excursionCategoryType = defineType({
       type: 'internationalizedArrayString',
       title: 'Title',
     }),
+    defineField({
+      name: 'icon',
+      type: 'image',
+      title: 'Icon',
+      options: {
+        hotspot: true,
+      },
+    }),
   ],
 })
