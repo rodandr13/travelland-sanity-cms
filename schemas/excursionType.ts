@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../utils/isUniqueSlugByType'
+import {UserIcon} from '@sanity/icons'
 
 export const excursionType = defineType({
   name: 'excursion',
@@ -134,6 +135,13 @@ export const excursionType = defineType({
       title: 'Excursion route',
       of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
       group: 'options',
+    }),
+    defineField({
+      name: 'promotionalPrices',
+      title: 'Promotional prices',
+      type: 'array',
+      of: [defineArrayMember({type: 'schedule'})],
+      group: 'schedule',
     }),
     defineField({
       name: 'schedule',
