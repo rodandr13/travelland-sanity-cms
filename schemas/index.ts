@@ -14,6 +14,7 @@ import {placeType} from './placeType'
 import {seoType} from './seoType'
 import {excursionCategoryType} from './excursionCategoryType'
 import {excursionSubcategoryType} from './excursionSubcategoryType'
+import {priceType} from './objects/priceType'
 
 export const schemaTypes = [
   excursionType,
@@ -32,4 +33,5 @@ export const schemaTypes = [
   seoType,
   excursionCategoryType,
   excursionSubcategoryType,
+  priceType,
 ]

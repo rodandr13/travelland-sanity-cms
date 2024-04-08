@@ -13,7 +13,6 @@ export const startTimeType = defineType({
       time: 'time',
     },
     prepare: (selection) => {
-      console.log('selection', selection)
       const {time} = selection
       return {
         title: time,

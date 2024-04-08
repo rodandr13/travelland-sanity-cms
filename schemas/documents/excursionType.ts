@@ -1,6 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../utils/isUniqueSlugByType'
-import {UserIcon} from '@sanity/icons'
 
 export const excursionType = defineType({
   name: 'excursion',
@@ -30,16 +29,20 @@ export const excursionType = defineType({
       title: 'Options',
     },
     {
-      name: 'seo',
-      title: 'SEO',
-    },
-    {
       name: 'media',
       title: 'Media',
     },
     {
       name: 'schedule',
       title: 'Schedule',
+    },
+    {
+      name: 'promoPrices',
+      title: 'Promo prices',
+    },
+    {
+      name: 'seo',
+      title: 'SEO',
     },
   ],
   fields: [
@@ -137,18 +140,69 @@ export const excursionType = defineType({
       group: 'options',
     }),
     defineField({
-      name: 'promotionalPrices',
-      title: 'Promotional prices',
-      type: 'array',
-      of: [defineArrayMember({type: 'schedule'})],
+      name: 'dates',
+      title: 'Activity dates',
+      type: 'object',
+      options: {
+        columns: 2,
+      },
+      group: 'schedule',
+      fields: [
+        defineField({
+          name: 'dateFrom',
+          type: 'date',
+          title: 'From',
+          options: {
+            dateFormat: 'DD/MM/YYYY',
+          },
+        }),
+        defineField({
+          name: 'dateTo',
+          type: 'date',
+          title: 'To',
+          options: {
+            dateFormat: 'DD/MM/YYYY',
+          },
+        }),
+      ],
+    }),
+    defineField({
+      name: 'weekdays',
+      type: 'weekdaysSelector',
+      title: 'Days of the week',
       group: 'schedule',
     }),
     defineField({
-      name: 'schedule',
-      title: 'Schedule',
+      name: 'prices',
       type: 'array',
-      of: [defineArrayMember({type: 'schedule'})],
+      title: 'Prices',
       group: 'schedule',
+      of: [
+        defineArrayMember({
+          type: 'price',
+        }),
+      ],
+    }),
+    defineField({
+      name: 'startTime',
+      type: 'array',
+      title: 'Time start',
+      group: 'schedule',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'startTime'}]})],
+    }),
+    defineField({
+      name: 'duration',
+      type: 'array',
+      title: 'Duration',
+      group: 'schedule',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'duration'}]})],
+    }),
+    defineField({
+      name: 'promotionalPrices',
+      title: 'Promotional prices',
+      type: 'array',
+      group: 'promoPrices',
+      of: [defineArrayMember({type: 'schedule'})],
     }),
   ],
 })
