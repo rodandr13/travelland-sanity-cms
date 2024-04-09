@@ -1,5 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import isUniqueSlugByType from '../utils/isUniqueSlugByType'
+import isUniqueSlugByType from '../../utils/isUniqueSlugByType'
 
 export const excursionType = defineType({
   name: 'excursion',
