@@ -113,6 +113,13 @@ export const excursionType = defineType({
       group: 'options',
     }),
     defineField({
+      name: 'excursionParameters',
+      type: 'array',
+      title: 'Parameters',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionParameters'}]})],
+      group: 'options',
+    }),
+    defineField({
       name: 'additionalTerms',
       type: 'array',
       title: 'Additional terms',
