@@ -1,12 +1,23 @@
 import {defineField, defineType, defineArrayMember} from 'sanity'
 import {ThListIcon, UserIcon} from '@sanity/icons'
-import {PromotionalPricePreview} from '../../components/PromotionalPricePreview'
+import {StatusBadgePreview} from '../../components/StatusBadgePreview'
+import {format} from 'date-fns'
 
 export const scheduleType = defineType({
   name: 'schedule',
   title: 'Schedule',
   type: 'object',
   icon: ThListIcon,
+  components: {
+    preview: StatusBadgePreview,
+  },
+  preview: {
+    select: {
+      title: 'title',
+      dateFrom: 'dates.dateFrom',
+      dateTo: 'dates.dateTo',
+    },
+  },
   fields: [
     defineField({
       name: 'title',
@@ -22,11 +33,17 @@ export const scheduleType = defineType({
           name: 'dateFrom',
           type: 'date',
           title: 'From',
+          options: {
+            dateFormat: 'DD.MM.YYYY',
+          },
         }),
         defineField({
           name: 'dateTo',
           type: 'date',
           title: 'To',
+          options: {
+            dateFormat: 'DD.MM.YYYY',
+          },
         }),
       ],
       options: {

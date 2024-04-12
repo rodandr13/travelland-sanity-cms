@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../../utils/isUniqueSlugByType'
+import {StatusBadgePreview} from '../../components/StatusBadgePreview'
 
 export const excursionType = defineType({
   name: 'excursion',
@@ -210,7 +211,11 @@ export const excursionType = defineType({
       title: 'Promotional prices',
       type: 'array',
       group: 'prices',
-      of: [defineArrayMember({type: 'schedule'})],
+      of: [
+        defineArrayMember({
+          type: 'schedule',
+        }),
+      ],
     }),
   ],
 })
