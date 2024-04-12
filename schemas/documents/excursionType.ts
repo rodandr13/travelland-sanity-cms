@@ -37,8 +37,8 @@ export const excursionType = defineType({
       title: 'Schedule',
     },
     {
-      name: 'promoPrices',
-      title: 'Promo prices',
+      name: 'prices',
+      title: 'Prices',
     },
     {
       name: 'seo',
@@ -63,6 +63,27 @@ export const excursionType = defineType({
       },
     }),
     defineField({
+      name: 'city',
+      type: 'reference',
+      title: 'Excursion starting city',
+      to: [{type: 'city'}],
+      group: 'options',
+    }),
+    defineField({
+      name: 'meetingPoint',
+      type: 'reference',
+      title: 'Meeting Point',
+      group: 'options',
+      to: [{type: 'meetingPlaces'}],
+    }),
+    defineField({
+      name: 'route',
+      type: 'array',
+      title: 'Excursion route',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
+      group: 'options',
+    }),
+    defineField({
       name: 'excursionCategory',
       type: 'reference',
       title: 'Type',
@@ -77,13 +98,6 @@ export const excursionType = defineType({
       group: 'options',
     }),
     defineField({
-      name: 'city',
-      type: 'reference',
-      title: 'Excursion starting city',
-      to: [{type: 'city'}],
-      group: 'options',
-    }),
-    defineField({
       name: 'included',
       type: 'array',
       title: 'Whats included',
@@ -95,6 +109,13 @@ export const excursionType = defineType({
       type: 'array',
       title: 'Surcharges',
       of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
+      group: 'options',
+    }),
+    defineField({
+      name: 'additionalTerms',
+      type: 'array',
+      title: 'Additional terms',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
       group: 'options',
     }),
     defineField({
@@ -126,20 +147,6 @@ export const excursionType = defineType({
       group: 'seo',
     }),
     defineField({
-      name: 'meetingPoint',
-      type: 'reference',
-      title: 'Meeting Point',
-      group: 'options',
-      to: [{type: 'meetingPlaces'}],
-    }),
-    defineField({
-      name: 'route',
-      type: 'array',
-      title: 'Excursion route',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
-      group: 'options',
-    }),
-    defineField({
       name: 'dates',
       title: 'Activity dates',
       type: 'object',
@@ -152,17 +159,11 @@ export const excursionType = defineType({
           name: 'dateFrom',
           type: 'date',
           title: 'From',
-          options: {
-            dateFormat: 'DD/MM/YYYY',
-          },
         }),
         defineField({
           name: 'dateTo',
           type: 'date',
           title: 'To',
-          options: {
-            dateFormat: 'DD/MM/YYYY',
-          },
         }),
       ],
     }),
@@ -175,8 +176,8 @@ export const excursionType = defineType({
     defineField({
       name: 'prices',
       type: 'array',
-      title: 'Prices',
-      group: 'schedule',
+      title: 'Base prices',
+      group: 'prices',
       of: [
         defineArrayMember({
           type: 'price',
@@ -192,16 +193,23 @@ export const excursionType = defineType({
     }),
     defineField({
       name: 'duration',
-      type: 'array',
+      type: 'reference',
       title: 'Duration',
       group: 'schedule',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'duration'}]})],
+      to: [{type: 'duration'}],
+    }),
+    defineField({
+      name: 'priceCorrections',
+      title: 'Price corrections',
+      type: 'array',
+      group: 'prices',
+      of: [defineArrayMember({type: 'schedule'})],
     }),
     defineField({
       name: 'promotionalPrices',
       title: 'Promotional prices',
       type: 'array',
-      group: 'promoPrices',
+      group: 'prices',
       of: [defineArrayMember({type: 'schedule'})],
     }),
   ],

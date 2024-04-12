@@ -65,6 +65,10 @@ export default defineConfig({
                       .title('Included')
                       .child(S.documentTypeList('included')),
                     S.listItem()
+                      .schemaType('additionalTerms')
+                      .title('Additional terms')
+                      .child(S.documentTypeList('additionalTerms')),
+                    S.listItem()
                       .schemaType('startTime')
                       .title('Start time')
                       .child(S.documentTypeList('startTime')),
@@ -91,6 +95,7 @@ export default defineConfig({
                   'media.tag',
                   'excursionCategory',
                   'excursionSubcategory',
+                  'additionalTerms',
                 ].includes(item.spec.id),
             ),
           ])

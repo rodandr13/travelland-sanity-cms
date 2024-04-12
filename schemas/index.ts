@@ -15,6 +15,7 @@ import {seoType} from './objects/seoType'
 import {excursionCategoryType} from './documents/excursionCategoryType'
 import {excursionSubcategoryType} from './documents/excursionSubcategoryType'
 import {priceType} from './objects/priceType'
+import {additionalTermsType} from './documents/additionalTermsType'
 
 export const schemaTypes = [
   excursionType,
@@ -34,4 +35,5 @@ export const schemaTypes = [
   excursionCategoryType,
   excursionSubcategoryType,
   priceType,
+  additionalTermsType,
 ]
