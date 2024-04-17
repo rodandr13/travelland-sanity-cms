@@ -1,7 +1,6 @@
 import {defineField, defineType, defineArrayMember} from 'sanity'
-import {ThListIcon, UserIcon} from '@sanity/icons'
+import {ThListIcon} from '@sanity/icons'
 import {StatusBadgePreview} from '../../components/StatusBadgePreview'
-import {format} from 'date-fns'
 
 export const scheduleType = defineType({
   name: 'schedule',

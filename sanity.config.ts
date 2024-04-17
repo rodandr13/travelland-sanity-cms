@@ -52,6 +52,10 @@ export default defineConfig({
                       .title('Excursion subcategory')
                       .child(S.documentTypeList('excursionSubcategory')),
                     S.listItem()
+                      .schemaType('excursionParameters')
+                      .title('Excursion parameters')
+                      .child(S.documentTypeList('excursionParameters')),
+                    S.listItem()
                       .icon(TagIcon)
                       .schemaType('media.tag')
                       .title('Media tags')
@@ -96,6 +100,7 @@ export default defineConfig({
                   'excursionCategory',
                   'excursionSubcategory',
                   'additionalTerms',
+                  'excursionParameters',
                 ].includes(item.spec.id),
             ),
           ])

@@ -8,11 +8,14 @@ export const excursionCategoryType = defineType({
   preview: {
     select: {
       title: 'title.0.value',
+      icon: 'icon',
     },
     prepare: (selection) => {
-      const {title} = selection
+      const {title, icon} = selection
+      console.log(icon)
       return {
         title: title,
+        media: icon,
       }
     },
   },
@@ -26,9 +29,6 @@ export const excursionCategoryType = defineType({
       name: 'icon',
       type: 'image',
       title: 'Icon',
-      options: {
-        hotspot: true,
-      },
     }),
   ],
 })

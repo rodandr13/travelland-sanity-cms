@@ -8,11 +8,14 @@ export const parametersType = defineType({
   preview: {
     select: {
       title: 'title.0.value',
+      icon: 'icon',
     },
     prepare: (selection) => {
-      const {title} = selection
+      const {title, icon} = selection
+      console.log(icon)
       return {
         title: title,
+        media: icon,
       }
     },
   },
