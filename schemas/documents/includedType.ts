@@ -1,5 +1,8 @@
 import {defineField, defineType} from 'sanity'
 import {CheckmarkIcon} from '@sanity/icons'
+import {valueInternationalized} from '../../types'
+import {validateInternationalized} from '../../lib/validations'
+import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const includedType = defineType({
   name: 'included',
@@ -23,6 +26,10 @@ export const includedType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
   ],
 })

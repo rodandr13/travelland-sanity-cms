@@ -23,7 +23,8 @@ export const durationType = defineType({
     defineField({
       name: 'hours',
       title: 'Hours',
-      type: 'number',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

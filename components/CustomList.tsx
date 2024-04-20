@@ -12,7 +12,7 @@ function ArrayFunctions(
   const {value} = props
   return (
     <Grid columns={1} gap={2}>
-      {value?.length < 1 && <ArrayOfPrimitivesFunctions {...props} />}
+      {(value?.length ?? 0) < 1 && <ArrayOfPrimitivesFunctions {...props} />}
     </Grid>
   )
 }

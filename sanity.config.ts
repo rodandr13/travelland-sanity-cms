@@ -13,7 +13,6 @@ import './styles.css'
 export default defineConfig({
   name: 'default',
   title: 'travelland',
-
   projectId: 'w6lmtfgf',
   dataset: 'production',
 
@@ -101,7 +100,7 @@ export default defineConfig({
                   'excursionSubcategory',
                   'additionalTerms',
                   'excursionParameters',
-                ].includes(item.spec.id),
+                ].includes(item.getId?.() ?? ''),
             ),
           ])
       },

@@ -25,11 +25,13 @@ export const priceType = defineType({
       type: 'reference',
       name: 'category',
       title: 'Category',
+      validation: (Rule) => Rule.required(),
       to: [{type: 'category'}],
     }),
     defineField({
       type: 'number',
       name: 'price',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

@@ -1,5 +1,8 @@
 import {defineField, defineType} from 'sanity'
 import {CircleIcon} from '@sanity/icons'
+import {validateInternationalized} from '../../lib/validations'
+import {valueInternationalized} from '../../types'
+import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const startTimeType = defineType({
   name: 'startTime',
@@ -24,6 +27,10 @@ export const startTimeType = defineType({
       name: 'time',
       title: 'Time',
       type: 'timeValue',
+      validation: (Rule) => [
+        Rule.required(),
+        Rule.custom((value: valueInternationalized[]) => validateInternationalized(value, MAX_LENGTH_TITLE)),
+      ],
     }),
   ],
 })

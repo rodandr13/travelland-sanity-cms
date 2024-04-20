@@ -1,5 +1,10 @@
-export default async function isUniqueSlugByType(slug, context) {
+import {SlugValidationContext} from 'sanity'
+
+export default async function isUniqueSlugByType(slug: string, context: SlugValidationContext) {
   const {document, getClient} = context
+  if (!document) {
+    return 'Document is undefined'
+  }
   const client = getClient({apiVersion: '2022-03-07'})
   const documentType = document._type
   const id = document._id.replace(/^drafts\./, '')

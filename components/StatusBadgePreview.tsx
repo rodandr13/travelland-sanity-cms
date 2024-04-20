@@ -7,6 +7,11 @@ type CastPreviewProps = PreviewProps & {
   dateTo?: string
 }
 
+type BadgeProps = {
+  children: string
+  tone: 'default' | 'positive' | 'critical' | 'primary' | 'caution' | undefined
+}
+
 export const StatusBadgePreview = (props: PreviewProps) => {
   const castProps = props as CastPreviewProps
   const {dateFrom, dateTo} = castProps
@@ -16,7 +21,7 @@ export const StatusBadgePreview = (props: PreviewProps) => {
       No dates provided
     </Text>
   )
-  let badgeProps = {children: 'No status', tone: 'default'}
+  let badgeProps: BadgeProps = {children: 'No status', tone: 'default'}
 
   if (dateFrom && dateTo) {
     const newDateFrom = new Date(dateFrom)

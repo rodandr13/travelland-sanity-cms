@@ -1,6 +1,5 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import isUniqueSlugByType from '../../utils/isUniqueSlugByType'
-import {StatusBadgePreview} from '../../components/StatusBadgePreview'
+import isUniqueSlugByType from '../../lib/isUniqueSlugByType'
 
 export const excursionType = defineType({
   name: 'excursion',
@@ -30,8 +29,8 @@ export const excursionType = defineType({
       title: 'Options',
     },
     {
-      name: 'media',
-      title: 'Media',
+      name: 'places',
+      title: 'Places',
     },
     {
       name: 'schedule',
@@ -40,6 +39,10 @@ export const excursionType = defineType({
     {
       name: 'prices',
       title: 'Prices',
+    },
+    {
+      name: 'media',
+      title: 'Media',
     },
     {
       name: 'seo',
@@ -52,12 +55,14 @@ export const excursionType = defineType({
       type: 'string',
       title: 'Title',
       group: 'content',
+      validation: (Rule) => Rule.required().min(2).max(100),
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       group: 'content',
+      validation: (Rule) => Rule.required(),
       options: {
         source: 'title',
         isUnique: isUniqueSlugByType,
@@ -67,76 +72,78 @@ export const excursionType = defineType({
       name: 'city',
       type: 'reference',
       title: 'Excursion starting city',
+      group: 'options',
+      validation: (Rule) => Rule.required(),
       to: [{type: 'city'}],
-      group: 'options',
-    }),
-    defineField({
-      name: 'meetingPoint',
-      type: 'reference',
-      title: 'Meeting Point',
-      group: 'options',
-      to: [{type: 'meetingPlaces'}],
     }),
     defineField({
       name: 'route',
       type: 'array',
-      title: 'Excursion route',
+      title: 'Places to visit',
+      group: 'places',
+      validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
-      group: 'options',
     }),
     defineField({
       name: 'excursionCategory',
       type: 'reference',
       title: 'Type',
-      to: [{type: 'excursionCategory'}],
       group: 'options',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'excursionCategory'}],
     }),
     defineField({
       name: 'excursionSubcategory',
       type: 'array',
       title: 'Subtype',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionSubcategory'}]})],
       group: 'options',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionSubcategory'}]})],
     }),
     defineField({
       name: 'included',
       type: 'array',
       title: 'Whats included',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'included'}]})],
       group: 'options',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'included'}]})],
     }),
     defineField({
       name: 'surcharge',
       type: 'array',
       title: 'Surcharges',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
       group: 'options',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
     }),
     defineField({
       name: 'excursionParameters',
       type: 'array',
       title: 'Parameters',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionParameters'}]})],
       group: 'options',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionParameters'}]})],
     }),
     defineField({
       name: 'additionalTerms',
       type: 'array',
       title: 'Additional terms',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
       group: 'options',
+      of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
     }),
     defineField({
       name: 'description',
       type: 'text',
       title: 'Description',
       group: 'content',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'gallery',
       type: 'array',
       title: 'Gallery',
       group: 'media',
+      validation: (Rule) => Rule.required(),
       of: [
         defineArrayMember({
           type: 'image',
@@ -155,6 +162,14 @@ export const excursionType = defineType({
       group: 'seo',
     }),
     defineField({
+      name: 'meetingPoint',
+      type: 'reference',
+      title: 'Meeting Point',
+      group: 'schedule',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'meetingPlaces'}],
+    }),
+    defineField({
       name: 'dates',
       title: 'Activity dates',
       type: 'object',
@@ -162,16 +177,19 @@ export const excursionType = defineType({
         columns: 2,
       },
       group: 'schedule',
+      validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'dateFrom',
           type: 'date',
           title: 'From',
+          validation: (Rule) => Rule.required(),
         }),
         defineField({
           name: 'dateTo',
           type: 'date',
           title: 'To',
+          validation: (Rule) => Rule.required(),
         }),
       ],
     }),
@@ -180,12 +198,14 @@ export const excursionType = defineType({
       type: 'weekdaysSelector',
       title: 'Days of the week',
       group: 'schedule',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'prices',
       type: 'array',
       title: 'Base prices',
       group: 'prices',
+      validation: (Rule) => Rule.required(),
       of: [
         defineArrayMember({
           type: 'price',
@@ -197,6 +217,7 @@ export const excursionType = defineType({
       type: 'array',
       title: 'Time start',
       group: 'schedule',
+      validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'startTime'}]})],
     }),
     defineField({
@@ -204,6 +225,7 @@ export const excursionType = defineType({
       type: 'reference',
       title: 'Duration',
       group: 'schedule',
+      validation: (Rule) => Rule.required(),
       to: [{type: 'duration'}],
     }),
     defineField({

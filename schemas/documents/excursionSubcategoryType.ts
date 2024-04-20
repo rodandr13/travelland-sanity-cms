@@ -1,4 +1,7 @@
 import {defineField, defineType} from 'sanity'
+import {valueInternationalized} from '../../types'
+import {validateInternationalized} from '../../lib/validations'
+import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const excursionSubcategoryType = defineType({
   name: 'excursionSubcategory',
@@ -24,11 +27,16 @@ export const excursionSubcategoryType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
     defineField({
       name: 'icon',
       type: 'image',
       title: 'Icon',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

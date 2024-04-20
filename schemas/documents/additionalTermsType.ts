@@ -1,4 +1,7 @@
 import {defineField, defineType} from 'sanity'
+import {valueInternationalized} from '../../types'
+import {validateInternationalized} from '../../lib/validations'
+import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const additionalTermsType = defineType({
   name: 'additionalTerms',
@@ -21,6 +24,10 @@ export const additionalTermsType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
   ],
 })

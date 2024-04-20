@@ -1,4 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {validateInternationalized} from '../../lib/validations'
+import {valueInternationalized} from '../../types'
+import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const placeType = defineType({
   name: 'place',
@@ -22,16 +25,25 @@ export const placeType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
     defineField({
       name: 'description',
       type: 'internationalizedArrayText',
       title: 'Description',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
+        ),
     }),
     defineField({
       name: 'gallery',
       type: 'array',
       title: 'Gallery',
+      validation: (Rule) => Rule.required(),
       of: [
         defineArrayMember({
           type: 'image',

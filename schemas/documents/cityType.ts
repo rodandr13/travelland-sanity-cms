@@ -1,4 +1,7 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
+import {valueInternationalized} from '../../types'
+import {validateInternationalized} from '../../lib/validations'
+import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const cityType = defineType({
   name: 'city',
@@ -22,7 +25,10 @@ export const cityType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
-      validation: (Rule) => Rule.required(),
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
     defineField({
       name: 'country',

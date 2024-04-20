@@ -1,5 +1,8 @@
 import {defineField, defineType} from 'sanity'
 import {GenerateIcon} from '@sanity/icons'
+import {valueInternationalized} from '../../types'
+import {validateInternationalized} from '../../lib/validations'
+import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const meetingPlaceType = defineType({
   name: 'meetingPlaces',
@@ -23,16 +26,31 @@ export const meetingPlaceType = defineType({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_TITLE),
+        ),
     }),
     defineField({
       name: 'description',
       type: 'internationalizedArrayText',
       title: 'Description',
+      validation: (Rule) =>
+        Rule.custom((value: valueInternationalized[]) =>
+          validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
+        ),
+    }),
+    defineField({
+      name: 'image',
+      type: 'image',
+      title: 'Image',
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'location',
       type: 'geopoint',
       title: 'Location',
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })
