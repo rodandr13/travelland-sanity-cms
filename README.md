@@ -1,9 +1,22 @@
-# Sanity Clean Content Studio
+## Headless CMS Sanity для управления контентом
 
-Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
+Краткое описание вашего проекта.
 
-Now you can do the following things:
+**Цель проекта** — предоставить удобный интерфейс управления контентом для менеджеров. Это было основной 
 
-- [Read “getting started” in the docs](https://www.sanity.io/docs/introduction/getting-started?utm_source=readme)
-- [Join the community Slack](https://slack.sanity.io/?utm_source=readme)
-- [Extend and build plugins](https://www.sanity.io/docs/content-studio/extending?utm_source=readme)
+### Задача
+- Разработать страницу с отображением всех кораблей из игры «Мир Кораблей».
+- Пользователь должен иметь возможность посмотреть на странице основные параметры корабля: название, класс, нация, уровень, описание, изображение и отфильтровать корабли по уровню, нации и классу.
+- Дизайн на свое усмотрение.
+- 
+## Особенности
+
+- Описание ключевых особенностей проекта.
+
+## Технологии
+
+- Sanity CMS
+- React
+- Node.js
+- TypeScript
+
