@@ -27,10 +27,7 @@ export const startTimeType = defineType({
       name: 'time',
       title: 'Time',
       type: 'timeValue',
-      validation: (Rule) => [
-        Rule.required(),
-        Rule.custom((value: valueInternationalized[]) => validateInternationalized(value, MAX_LENGTH_TITLE)),
-      ],
+      validation: (Rule) => Rule.required(),
     }),
   ],
 })

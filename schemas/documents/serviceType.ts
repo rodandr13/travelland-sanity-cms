@@ -1,23 +1,22 @@
-import {defineField, defineType} from 'sanity'
-import {GenerateIcon} from '@sanity/icons'
-import {valueInternationalized} from '../../types'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import {validateInternationalized} from '../../lib/validations'
+import {valueInternationalized} from '../../types'
 import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
-export const meetingPlaceType = defineType({
-  name: 'meetingPlaces',
+export const serviceType = defineType({
+  name: 'service',
+  title: 'Service',
   type: 'document',
-  title: 'Meeting places',
-  icon: GenerateIcon,
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
+      image: 'gallery.0.asset',
       title: 'title.0.value',
     },
-    prepare: (selection) => {
-      const {title} = selection
+    prepare: ({image, title}) => {
       return {
         title: title,
+        media: image,
       }
     },
   },
@@ -45,11 +44,6 @@ export const meetingPlaceType = defineType({
       type: 'image',
       title: 'Image',
       validation: (Rule) => Rule.required(),
-    }),
-    defineField({
-      name: 'location',
-      type: 'geopoint',
-      title: 'Location',
     }),
   ],
 })
