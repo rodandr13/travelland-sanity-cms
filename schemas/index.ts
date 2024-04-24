@@ -18,6 +18,7 @@ import {priceType} from './objects/priceType'
 import {additionalTermsType} from './documents/additionalTermsType'
 import {parametersType} from './documents/parametersType'
 import {serviceType} from './documents/serviceType'
+import {settingsAppType} from './documents/settingsAppType'
 
 export const schemaTypes = [
   excursionType,
@@ -40,4 +41,5 @@ export const schemaTypes = [
   additionalTermsType,
   parametersType,
   serviceType,
+  settingsAppType,
 ]

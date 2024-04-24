@@ -7,7 +7,7 @@ import {schemaTypes} from './schemas'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {languageFilter} from '@sanity/language-filter'
 import {MdApartment, MdTour, MdRoom, MdMap} from 'react-icons/md'
-import {TagIcon} from '@sanity/icons'
+import {TagIcon, CogIcon} from '@sanity/icons'
 import './styles.css'
 
 export default defineConfig({
@@ -68,6 +68,10 @@ export default defineConfig({
                       .title('Included')
                       .child(S.documentTypeList('included')),
                     S.listItem()
+                      .schemaType('service')
+                      .title('Services')
+                      .child(S.documentTypeList('service')),
+                    S.listItem()
                       .schemaType('additionalTerms')
                       .title('Additional terms')
                       .child(S.documentTypeList('additionalTerms')),
@@ -82,6 +86,10 @@ export default defineConfig({
                   ]),
               ),
             S.divider(),
+            S.listItem()
+              .icon(CogIcon)
+              .title('Site settings')
+              .child(S.editor().schemaType('settingsApp').documentId('settingsApp')),
             ...S.documentTypeListItems().filter(
               (item) =>
                 ![
@@ -100,6 +108,8 @@ export default defineConfig({
                   'excursionSubcategory',
                   'additionalTerms',
                   'excursionParameters',
+                  'service',
+                  'settingsApp',
                 ].includes(item.getId?.() ?? ''),
             ),
           ])
