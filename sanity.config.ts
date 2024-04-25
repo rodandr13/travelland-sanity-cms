@@ -118,7 +118,7 @@ export default defineConfig({
     visionTool(),
     media(),
     googleMapsInput({
-      apiKey: 'AIzaSyBx7lPY5LJ3HDcByxeCWBcLUjlnUjv8oTU',
+      apiKey: process.env.GOOGLE_MAPS_API_KEY,
     }),
     internationalizedArray({
       languages: [{id: 'ru', title: 'Russian'}],
