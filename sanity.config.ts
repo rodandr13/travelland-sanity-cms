@@ -6,9 +6,19 @@ import {googleMapsInput} from '@sanity/google-maps-input'
 import {schemaTypes} from './schemas'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {languageFilter} from '@sanity/language-filter'
-import {MdApartment, MdTour, MdRoom, MdMap} from 'react-icons/md'
-import {TagIcon, CogIcon} from '@sanity/icons'
+import {MdApartment, MdMap, MdRoom, MdTour} from 'react-icons/md'
+import {CogIcon, TagIcon} from '@sanity/icons'
 import './styles.css'
+
+import * as dotenv from 'dotenv'
+
+let googleMapsApiKey = import.meta.env?.SANITY_STUDIO_GOOGLE_MAPS_API_KEY
+if (!googleMapsApiKey) {
+  dotenv.config({
+    path: `.env`,
+  })
+  googleMapsApiKey = process.env?.SANITY_STUDIO_GOOGLE_MAPS_API_KEY
+}
 
 export default defineConfig({
   name: 'default',
@@ -118,7 +128,7 @@ export default defineConfig({
     visionTool(),
     media(),
     googleMapsInput({
-      apiKey: process.env.GOOGLE_MAPS_API_KEY,
+      apiKey: googleMapsApiKey,
     }),
     internationalizedArray({
       languages: [{id: 'ru', title: 'Russian'}],
