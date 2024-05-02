@@ -164,7 +164,15 @@ export const excursionType = defineType({
     defineField({
       name: 'meetingPoint',
       type: 'reference',
-      title: 'Meeting Point',
+      title: 'Starting place',
+      group: 'schedule',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'meetingPlaces'}],
+    }),
+    defineField({
+      name: 'endingPlace',
+      type: 'reference',
+      title: 'Ending place',
       group: 'schedule',
       validation: (Rule) => Rule.required(),
       to: [{type: 'meetingPlaces'}],

@@ -5,7 +5,19 @@ export const settingsAppType = defineType({
   title: 'Settings',
   type: 'document',
   __experimental_formPreviewTitle: false,
+  preview: {
+    prepare: () => {
+      return {
+        title: 'Settings',
+      }
+    },
+  },
   fields: [
+    defineField({
+      name: 'heroTitle',
+      title: 'Hero Title',
+      type: 'internationalizedArrayString',
+    }),
     defineField({
       name: 'heroImage',
       title: 'Hero image',
