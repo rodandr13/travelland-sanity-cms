@@ -41,9 +41,7 @@ export const StatusBadgePreview = (props: PreviewProps) => {
   return (
     <Flex align="center" paddingRight={3}>
       <Box flex={1}>{props.renderDefault({...props, subtitle})}</Box>
-      <Badge mode="outline" tone={badgeProps.tone}>
-        {badgeProps.children}
-      </Badge>
+      <Badge tone={badgeProps.tone}>{badgeProps.children}</Badge>
     </Flex>
   )
 }
