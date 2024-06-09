@@ -26,5 +26,10 @@ export const settingsAppType = defineType({
         hotspot: true,
       },
     }),
+    defineField({
+      name: 'languageIcon',
+      title: 'Language icon',
+      type: 'image',
+    }),
   ],
 })

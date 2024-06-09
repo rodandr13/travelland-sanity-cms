@@ -18,6 +18,9 @@ export const excursionType = defineType({
       }
     },
   },
+  initialValue: {
+    adultsOnly: false,
+  },
   groups: [
     {
       name: 'content',
@@ -27,6 +30,10 @@ export const excursionType = defineType({
     {
       name: 'options',
       title: 'Options',
+    },
+    {
+      name: 'parameters',
+      title: 'Parameters',
     },
     {
       name: 'places',
@@ -117,19 +124,46 @@ export const excursionType = defineType({
       of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
     }),
     defineField({
-      name: 'excursionParameters',
-      type: 'array',
-      title: 'Parameters',
-      group: 'options',
-      validation: (Rule) => Rule.required(),
-      of: [defineArrayMember({type: 'reference', to: [{type: 'excursionParameters'}]})],
-    }),
-    defineField({
       name: 'additionalTerms',
       type: 'array',
       title: 'Additional terms',
       group: 'options',
       of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
+    }),
+    defineField({
+      name: 'adultsOnly',
+      type: 'boolean',
+      title: 'Adults only',
+      group: 'parameters',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'language',
+      type: 'array',
+      title: 'Language',
+      group: 'parameters',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'language'}]})],
+    }),
+    defineField({
+      name: 'physicalActivity',
+      type: 'number',
+      title: 'Physical activity',
+      group: 'parameters',
+      validation: (Rule) => Rule.required(),
+      options: {
+        list: [...Array.from({length: 5}, (v, i) => i + 1)],
+        layout: 'radio',
+        direction: 'horizontal',
+      },
+    }),
+    defineField({
+      name: 'groupSize',
+      type: 'reference',
+      title: 'Group size',
+      group: 'parameters',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'groupSize'}],
     }),
     defineField({
       name: 'description',
@@ -162,7 +196,7 @@ export const excursionType = defineType({
       group: 'seo',
     }),
     defineField({
-      name: 'meetingPoint',
+      name: 'startingPlace',
       type: 'reference',
       title: 'Starting place',
       group: 'schedule',

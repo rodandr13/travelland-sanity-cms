@@ -16,9 +16,10 @@ import {excursionCategoryType} from './documents/excursionCategoryType'
 import {excursionSubcategoryType} from './documents/excursionSubcategoryType'
 import {priceType} from './objects/priceType'
 import {additionalTermsType} from './documents/additionalTermsType'
-import {parametersType} from './documents/parametersType'
 import {serviceType} from './documents/serviceType'
 import {settingsAppType} from './documents/settingsAppType'
+import {languageType} from './documents/languageType'
+import {groupSizeType} from './documents/groupSize'
 
 export const schemaTypes = [
   excursionType,
@@ -39,7 +40,8 @@ export const schemaTypes = [
   excursionSubcategoryType,
   priceType,
   additionalTermsType,
-  parametersType,
   serviceType,
   settingsAppType,
+  languageType,
+  groupSizeType,
 ]
