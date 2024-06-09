@@ -243,18 +243,6 @@ export const excursionType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
-      name: 'prices',
-      type: 'array',
-      title: 'Base prices',
-      group: 'prices',
-      validation: (Rule) => Rule.required(),
-      of: [
-        defineArrayMember({
-          type: 'price',
-        }),
-      ],
-    }),
-    defineField({
       name: 'startTime',
       type: 'array',
       title: 'Time start',
@@ -271,10 +259,41 @@ export const excursionType = defineType({
       to: [{type: 'duration'}],
     }),
     defineField({
+      name: 'prices',
+      type: 'array',
+      title: 'Base prices',
+      group: 'prices',
+      readOnly: ({document}) => {
+        return Boolean(!document?.excursionCategory)
+      },
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.excursionCategory) {
+            return 'Необходимо выбрать категорию экскурсии'
+          }
+          return true
+        }).required(),
+      of: [
+        defineArrayMember({
+          type: 'price',
+        }),
+      ],
+    }),
+    defineField({
       name: 'priceCorrections',
       title: 'Price corrections',
       type: 'array',
       group: 'prices',
+      readOnly: ({document}) => {
+        return Boolean(!document?.excursionCategory)
+      },
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.excursionCategory) {
+            return 'Необходимо выбрать категорию экскурсии'
+          }
+          return true
+        }).required(),
       of: [defineArrayMember({type: 'schedule'})],
     }),
     defineField({
@@ -282,6 +301,16 @@ export const excursionType = defineType({
       title: 'Promotional prices',
       type: 'array',
       group: 'prices',
+      readOnly: ({document}) => {
+        return Boolean(!document?.excursionCategory)
+      },
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.excursionCategory) {
+            return 'Необходимо выбрать категорию экскурсии'
+          }
+          return true
+        }).required(),
       of: [
         defineArrayMember({
           type: 'schedule',
