@@ -152,7 +152,7 @@ export const excursionType = defineType({
       group: 'parameters',
       validation: (Rule) => Rule.required(),
       options: {
-        list: [...Array.from({length: 5}, (v, i) => i + 1)],
+        list: [...Array.from({length: 10}, (v, i) => i + 1)],
         layout: 'radio',
         direction: 'horizontal',
       },
@@ -200,16 +200,54 @@ export const excursionType = defineType({
       type: 'reference',
       title: 'Starting place',
       group: 'schedule',
-      validation: (Rule) => Rule.required(),
       to: [{type: 'meetingPlaces'}],
+      readOnly: ({document}) => {
+        return Boolean(!document?.city)
+      },
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.city) {
+            return 'Необходимо выбрать город начала экскурсии'
+          }
+          return true
+        }).required(),
+      options: {
+        filter: ({document}) => {
+          const cityRef = (document as any)?.city?._ref
+
+          return {
+            filter: 'city._ref == $cityRef',
+            params: {cityRef},
+          }
+        },
+      },
     }),
     defineField({
       name: 'endingPlace',
       type: 'reference',
       title: 'Ending place',
       group: 'schedule',
-      validation: (Rule) => Rule.required(),
       to: [{type: 'meetingPlaces'}],
+      readOnly: ({document}) => {
+        return Boolean(!document?.city)
+      },
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.city) {
+            return 'Необходимо выбрать город начала экскурсии'
+          }
+          return true
+        }).required(),
+      options: {
+        filter: ({document}) => {
+          const cityRef = (document as any)?.city?._ref
+
+          return {
+            filter: 'city._ref == $cityRef',
+            params: {cityRef},
+          }
+        },
+      },
     }),
     defineField({
       name: 'dates',

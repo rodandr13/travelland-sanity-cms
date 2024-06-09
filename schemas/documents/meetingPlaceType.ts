@@ -23,6 +23,13 @@ export const meetingPlaceType = defineType({
   },
   fields: [
     defineField({
+      name: 'city',
+      type: 'reference',
+      title: 'City',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'city'}],
+    }),
+    defineField({
       name: 'title',
       type: 'internationalizedArrayString',
       title: 'Title',

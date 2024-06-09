@@ -15,7 +15,6 @@ export const excursionSubcategoryType = defineType({
     },
     prepare: (selection) => {
       const {title, icon} = selection
-      console.log(icon)
       return {
         title: title,
         media: icon,

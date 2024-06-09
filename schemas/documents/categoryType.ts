@@ -42,5 +42,12 @@ export const categoryType = defineType({
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
         ),
     }),
+    defineField({
+      name: 'excursionCategory',
+      type: 'reference',
+      title: 'Type',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'excursionCategory'}],
+    }),
   ],
 })

@@ -28,22 +28,12 @@ export const priceType = defineType({
       validation: (Rule) => Rule.required(),
       to: [{type: 'category'}],
       options: {
-        filter: async ({document, getClient}) => {
-          const client = getClient({apiVersion: '2023-01-01'})
+        filter: async ({document}) => {
           const excursionCategoryRef = (document as any)?.excursionCategory?._ref
-          const categoryTitle = await client.fetch(
-            `*[_type == "excursionCategory" && _id == '${excursionCategoryRef}'][0].title[0].value`,
-          )
-
-          if (!categoryTitle) {
-            return {
-              filter: '',
-            }
-          }
 
           return {
-            filter: 'title[0].value == $categoryTitle',
-            params: {categoryTitle},
+            filter: 'excursionCategory._ref == $excursionCategoryRef',
+            params: {excursionCategoryRef},
           }
         },
       },
