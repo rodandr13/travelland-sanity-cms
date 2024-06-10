@@ -5,7 +5,7 @@ export default async function isUniqueSlugByType(slug: string, context: SlugVali
   if (!document) {
     return 'Document is undefined'
   }
-  const client = getClient({apiVersion: '2022-03-07'})
+  const client = getClient({apiVersion: '2023-03-07'})
   const documentType = document._type
   const id = document._id.replace(/^drafts\./, '')
   const params = {

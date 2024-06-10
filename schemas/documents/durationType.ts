@@ -23,8 +23,22 @@ export const durationType = defineType({
     defineField({
       name: 'hours',
       title: 'Hours',
-      type: 'string',
-      validation: (Rule) => Rule.required(),
+      type: 'number',
+      validation: (Rule) =>
+        Rule.custom(async (value, {document, getClient}) => {
+          if (typeof value === 'undefined') return true
+          const client = getClient({apiVersion: '2023-01-01'})
+          const id = document?._id
+          const existingDocuments = await client.fetch(
+            `*[_type == "duration" && hours == $value && _id != $id]`,
+            {value, id},
+          )
+          if (existingDocuments.length > 0) {
+            return 'Значение должно быть уникальным'
+          }
+
+          return true
+        }).required(),
     }),
   ],
 })

@@ -293,7 +293,6 @@ export const excursionType = defineType({
       type: 'reference',
       title: 'Duration',
       group: 'schedule',
-      validation: (Rule) => Rule.required(),
       to: [{type: 'duration'}],
     }),
     defineField({
@@ -331,7 +330,7 @@ export const excursionType = defineType({
             return 'Необходимо выбрать категорию экскурсии'
           }
           return true
-        }).required(),
+        }),
       of: [defineArrayMember({type: 'schedule'})],
     }),
     defineField({
@@ -348,7 +347,7 @@ export const excursionType = defineType({
             return 'Необходимо выбрать категорию экскурсии'
           }
           return true
-        }).required(),
+        }),
       of: [
         defineArrayMember({
           type: 'schedule',
