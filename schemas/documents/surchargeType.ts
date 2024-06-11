@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import {CloseIcon} from '@sanity/icons'
 import {validateInternationalized} from '../../lib/validations'
 import {valueInternationalized} from '../../types'
 import {MAX_LENGTH_TITLE} from '../../lib/constans'
@@ -8,7 +7,6 @@ export const surchargeType = defineType({
   name: 'surcharge',
   type: 'document',
   title: 'Surcharge',
-  icon: CloseIcon,
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
