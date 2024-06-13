@@ -76,6 +76,13 @@ export const excursionType = defineType({
       },
     }),
     defineField({
+      name: 'description',
+      type: 'text',
+      title: 'Description',
+      group: 'content',
+      validation: (Rule) => Rule.required().max(800),
+    }),
+    defineField({
       name: 'city',
       type: 'reference',
       title: 'Excursion starting city',
@@ -164,13 +171,6 @@ export const excursionType = defineType({
       group: 'parameters',
       validation: (Rule) => Rule.required(),
       to: [{type: 'groupSize'}],
-    }),
-    defineField({
-      name: 'description',
-      type: 'text',
-      title: 'Description',
-      group: 'content',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'gallery',
