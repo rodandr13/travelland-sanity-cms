@@ -1,5 +1,6 @@
 import {defineArrayMember, defineField, defineType} from 'sanity'
 import isUniqueSlugByType from '../../lib/isUniqueSlugByType'
+import {PhysicalActivityInput} from '../../components/PhysicalActivityInput'
 
 export const excursionType = defineType({
   name: 'excursion',
@@ -153,14 +154,9 @@ export const excursionType = defineType({
       name: 'physicalActivity',
       type: 'number',
       title: 'Physical activity',
-      description: 'Сложность физической активности на экскурсии',
       group: 'parameters',
-      validation: (Rule) => Rule.required(),
-      options: {
-        list: [...Array.from({length: 10}, (v, i) => i + 1)],
-        layout: 'radio',
-        direction: 'horizontal',
-      },
+      validation: (Rule) => Rule.required().min(1).max(10),
+      components: {input: PhysicalActivityInput},
     }),
     defineField({
       name: 'groupSize',
