@@ -6,23 +6,25 @@ export const durationType = defineType({
   title: 'Duration',
   type: 'document',
   icon: ClockIcon,
-  description: 'Duration of the excursion in hours',
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
-      hours: 'hours',
+      duration: 'duration',
     },
     prepare: (selection) => {
-      const {hours} = selection
+      const {duration} = selection
+      const hours = Math.floor(duration / 60)
+      const minutes = duration % 60
       return {
-        title: `${hours} hours`,
+        title: `${hours} hours ${minutes} minutes`,
       }
     },
   },
   fields: [
     defineField({
-      name: 'hours',
-      title: 'Hours',
+      name: 'duration',
+      title: 'Duration',
+      description: 'Указывается в минутах',
       type: 'number',
       validation: (Rule) =>
         Rule.custom(async (value, {document, getClient}) => {

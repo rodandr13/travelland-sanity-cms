@@ -7,14 +7,20 @@ export const priceType = defineType({
   title: 'Price',
   preview: {
     select: {
-      categoryTitle: 'category.title.0.value',
+      categoryTitle: 'category.title',
       categoryDescription: 'category.description.0.value',
       price: 'price',
     },
     prepare: (selection) => {
       const {categoryTitle, categoryDescription, price} = selection
+      let title
+      if (typeof categoryTitle === 'number') {
+        title = categoryTitle
+      } else {
+        title = categoryTitle[0].value
+      }
       return {
-        title: `${categoryTitle} | ${price} €`,
+        title: `${title} | ${price} €`,
         subtitle: categoryDescription,
         media: UserIcon,
       }
@@ -26,14 +32,25 @@ export const priceType = defineType({
       name: 'category',
       title: 'Category',
       validation: (Rule) => Rule.required(),
-      to: [{type: 'category'}],
+      to: [{type: 'category'}, {type: 'groupSize'}],
       options: {
-        filter: async ({document}) => {
+        filter: async ({document, getClient}) => {
           const excursionCategoryRef = (document as any)?.excursionCategory?._ref
-
+          const client = getClient({apiVersion: '2024-06-14'})
+          const excursionCategory = await client.fetch(
+            `*[_type == 'excursionCategory' && _id == $excursionCategoryRef][0]`,
+            {
+              excursionCategoryRef,
+            },
+          )
+          const excursionCategoryId = excursionCategory._id
+          const filter =
+            excursionCategoryId === '7d5275ef-b329-4373-a105-ce50d16d39f6'
+              ? 'groupSize'
+              : 'category'
           return {
-            filter: 'excursionCategory._ref == $excursionCategoryRef',
-            params: {excursionCategoryRef},
+            filter: '_type == $filter',
+            params: {filter},
           }
         },
       },

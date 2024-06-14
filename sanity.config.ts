@@ -61,6 +61,14 @@ export default defineConfig({
                       .title('Excursion subcategory')
                       .child(S.documentTypeList('excursionSubcategory')),
                     S.listItem()
+                      .schemaType('groupSize')
+                      .title('Group size')
+                      .child(S.documentTypeList('groupSize')),
+                    S.listItem()
+                      .schemaType('language')
+                      .title('Language')
+                      .child(S.documentTypeList('language')),
+                    S.listItem()
                       .icon(TagIcon)
                       .schemaType('media.tag')
                       .title('Media tags')
@@ -115,6 +123,8 @@ export default defineConfig({
                   'additionalTerms',
                   'service',
                   'settingsApp',
+                  'language',
+                  'groupSize',
                 ].includes(item.getId?.() ?? ''),
             ),
           ])
