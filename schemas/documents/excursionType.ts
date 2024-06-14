@@ -61,6 +61,8 @@ export const excursionType = defineType({
       name: 'title',
       type: 'string',
       title: 'Title',
+      description:
+        'Название экскурсии. Желательно не использовать слово "экскурсия" в названии, а также принадлежность к типу (индивидуальная, пешеходная и тп.)',
       group: 'content',
       validation: (Rule) => Rule.required().min(2).max(100),
     }),
@@ -68,6 +70,8 @@ export const excursionType = defineType({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
+      description:
+        'Отображается в URL для идентификации страницы. Генерируется из названия экскурсии после нажатия кнопки "Generate"',
       group: 'content',
       validation: (Rule) => Rule.required(),
       options: {
@@ -79,6 +83,7 @@ export const excursionType = defineType({
       name: 'description',
       type: 'text',
       title: 'Description',
+      description: 'Краткое описание экскурсии. Не более 800 символов',
       group: 'content',
       validation: (Rule) => Rule.required().max(800),
     }),
@@ -86,22 +91,16 @@ export const excursionType = defineType({
       name: 'city',
       type: 'reference',
       title: 'Excursion starting city',
+      description: 'Город начала экскурсии',
       group: 'options',
       validation: (Rule) => Rule.required(),
       to: [{type: 'city'}],
     }),
     defineField({
-      name: 'route',
-      type: 'array',
-      title: 'Places to visit',
-      group: 'places',
-      validation: (Rule) => Rule.required(),
-      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
-    }),
-    defineField({
       name: 'excursionCategory',
       type: 'reference',
       title: 'Type',
+      description: 'Тип экскурсии. Используется для фильтров',
       group: 'options',
       validation: (Rule) => Rule.required(),
       to: [{type: 'excursionCategory'}],
@@ -110,6 +109,7 @@ export const excursionType = defineType({
       name: 'excursionSubcategory',
       type: 'array',
       title: 'Subtype',
+      description: 'Подтип экскурсии. Может быть выбрано несколько. Используется для фильтров',
       group: 'options',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'excursionSubcategory'}]})],
@@ -118,6 +118,7 @@ export const excursionType = defineType({
       name: 'included',
       type: 'array',
       title: 'Whats included',
+      description: 'Что включено в экскурсию. Опции, которые выводятся списком в описании',
       group: 'options',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'included'}]})],
@@ -126,6 +127,7 @@ export const excursionType = defineType({
       name: 'surcharge',
       type: 'array',
       title: 'Surcharges',
+      description: 'Доплаты, которые не включены в экскурсию',
       group: 'options',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'surcharge'}]})],
@@ -134,20 +136,15 @@ export const excursionType = defineType({
       name: 'additionalTerms',
       type: 'array',
       title: 'Additional terms',
+      description: 'Скорее всего вам не нужно тут ничего выбирать',
       group: 'options',
       of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
-    }),
-    defineField({
-      name: 'adultsOnly',
-      type: 'boolean',
-      title: 'Adults only',
-      group: 'parameters',
-      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'language',
       type: 'array',
       title: 'Language',
+      description: 'Языки на которых проводится экскурсия',
       group: 'parameters',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'language'}]})],
@@ -156,6 +153,7 @@ export const excursionType = defineType({
       name: 'physicalActivity',
       type: 'number',
       title: 'Physical activity',
+      description: 'Сложность физической активности на экскурсии',
       group: 'parameters',
       validation: (Rule) => Rule.required(),
       options: {
@@ -168,14 +166,36 @@ export const excursionType = defineType({
       name: 'groupSize',
       type: 'reference',
       title: 'Group size',
+      description:
+        'Данный параметр размера группы нужен только для описания, отображается на странице экскурсии под описанием',
       group: 'parameters',
       validation: (Rule) => Rule.required(),
       to: [{type: 'groupSize'}],
     }),
     defineField({
+      name: 'adultsOnly',
+      type: 'boolean',
+      title: 'Adults only',
+      description:
+        'Выбрать только если экскурсия для взрослых. Опция отвечает за отображении в описании параметра "Можно с детьми", если неактивно, значит можно. По-умолчанию неактивно',
+      group: 'parameters',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'route',
+      type: 'array',
+      title: 'Places to visit',
+      description: 'Места, которые посещаются на экскурсии. Порядок не имеет значения',
+      group: 'places',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
+    }),
+    defineField({
       name: 'gallery',
       type: 'array',
       title: 'Gallery',
+      description:
+        'Фотографии экскурсии для галереи. Первая фотография всегда используется на превью',
       group: 'media',
       validation: (Rule) => Rule.required(),
       of: [
@@ -199,6 +219,7 @@ export const excursionType = defineType({
       name: 'startingPlace',
       type: 'reference',
       title: 'Starting place',
+      description: 'Место сбора где начинается экскурсия',
       group: 'schedule',
       to: [{type: 'meetingPlaces'}],
       readOnly: ({document}) => {
@@ -226,6 +247,7 @@ export const excursionType = defineType({
       name: 'endingPlace',
       type: 'reference',
       title: 'Ending place',
+      description: 'Место завершения экскурсии',
       group: 'schedule',
       to: [{type: 'meetingPlaces'}],
       readOnly: ({document}) => {
@@ -252,6 +274,7 @@ export const excursionType = defineType({
     defineField({
       name: 'dates',
       title: 'Activity dates',
+      description: 'Даты активности экскурсии. Используется для расчета цен',
       type: 'object',
       options: {
         columns: 2,
@@ -277,6 +300,7 @@ export const excursionType = defineType({
       name: 'weekdays',
       type: 'weekdaysSelector',
       title: 'Days of the week',
+      description: 'Дни недели по которым проводится экскурсия',
       group: 'schedule',
       validation: (Rule) => Rule.required(),
     }),
@@ -284,6 +308,7 @@ export const excursionType = defineType({
       name: 'startTime',
       type: 'array',
       title: 'Time start',
+      description: 'Время начала. Может быть выбрано несколько вариантов',
       group: 'schedule',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'startTime'}]})],
@@ -292,6 +317,7 @@ export const excursionType = defineType({
       name: 'duration',
       type: 'reference',
       title: 'Duration',
+      description: 'Длительность экскурсии',
       group: 'schedule',
       to: [{type: 'duration'}],
     }),
@@ -299,6 +325,7 @@ export const excursionType = defineType({
       name: 'prices',
       type: 'array',
       title: 'Base prices',
+      description: 'Базовые цены на экскурсию с учетом расписания',
       group: 'prices',
       readOnly: ({document}) => {
         return Boolean(!document?.excursionCategory)
@@ -319,6 +346,7 @@ export const excursionType = defineType({
     defineField({
       name: 'priceCorrections',
       title: 'Price corrections',
+      description: 'Коррекция расписания. Больший приоритет, чем у базовых цен',
       type: 'array',
       group: 'prices',
       readOnly: ({document}) => {
@@ -336,6 +364,7 @@ export const excursionType = defineType({
     defineField({
       name: 'promotionalPrices',
       title: 'Promotional prices',
+      description: 'Акционные цены. Наивысший приоритет среди цен',
       type: 'array',
       group: 'prices',
       readOnly: ({document}) => {
