@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import {UserIcon} from '@sanity/icons'
 import {valueInternationalized} from '../../types'
 import {validateInternationalized} from '../../lib/validations'
 import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
@@ -8,7 +7,6 @@ export const categoryType = defineType({
   name: 'category',
   title: 'Category',
   type: 'document',
-  icon: UserIcon,
   __experimental_formPreviewTitle: false,
   preview: {
     select: {

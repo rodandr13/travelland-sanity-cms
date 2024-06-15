@@ -283,12 +283,18 @@ export const excursionType = defineType({
           type: 'date',
           title: 'From',
           validation: (Rule) => Rule.required(),
+          options: {
+            dateFormat: 'DD.MM.YYYY',
+          },
         }),
         defineField({
           name: 'dateTo',
           type: 'date',
           title: 'To',
           validation: (Rule) => Rule.required(),
+          options: {
+            dateFormat: 'DD.MM.YYYY',
+          },
         }),
       ],
     }),

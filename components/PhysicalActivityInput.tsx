@@ -22,6 +22,14 @@ export const PhysicalActivityInput = (props: NumberInputProps) => {
 
   const descriptionClass = {lineHeight: 1.3, marginTop: 4}
 
+  const getTone = (index: number) => {
+    if (index <= 2) return 'primary'
+    if (index <= 5) return 'positive'
+    if (index <= 8) return 'caution'
+    if (index <= 10) return 'critical'
+    return 'default'
+  }
+
   return (
     <Stack space={4}>
       <Stack space={5}>
@@ -77,12 +85,12 @@ export const PhysicalActivityInput = (props: NumberInputProps) => {
           </Heading>
           <Stack space={2}>
             <Text size={1} as="p" style={descriptionClass}>
-              Описание: Подходит для людей с отличной физической подготовкой. Включает интенсивные и
+              Подходит для людей с отличной физической подготовкой. Включает интенсивные и
               длительные физические нагрузки, часто в сложных условиях.
             </Text>
             <Text size={1} as="p" style={descriptionClass}>
-              Примеры: Скалолазание, походы в горы высокой сложности, многодневные трекинги,
-              интенсивные водные виды спорта (например, каякинг по бурной воде).
+              Скалолазание, походы в горы высокой сложности, многодневные трекинги, интенсивные
+              водные виды спорта (например, каякинг по бурной воде).
             </Text>
           </Stack>
         </Card>
@@ -92,10 +100,11 @@ export const PhysicalActivityInput = (props: NumberInputProps) => {
           <Button
             key={index}
             mode={value === index ? 'default' : 'ghost'}
-            tone={value === index ? 'primary' : 'default'}
+            tone={getTone(index)}
             text={index.toString()}
             value={index}
             onClick={handleScore}
+            radius={'full'}
           />
         ))}
       </Grid>

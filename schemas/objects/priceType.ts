@@ -15,7 +15,7 @@ export const priceType = defineType({
       const {categoryTitle, categoryDescription, price} = selection
       let title
       if (typeof categoryTitle === 'number') {
-        title = categoryTitle
+        title = `До ${categoryTitle} человек`
       } else {
         title = categoryTitle[0].value
       }
@@ -31,6 +31,7 @@ export const priceType = defineType({
       type: 'reference',
       name: 'category',
       title: 'Category',
+      description: 'Ценовая категория',
       validation: (Rule) => Rule.required(),
       to: [{type: 'category'}, {type: 'groupSize'}],
       options: {
@@ -57,6 +58,7 @@ export const priceType = defineType({
     }),
     defineField({
       type: 'number',
+      description: 'Стоимость категории (€)',
       name: 'price',
       validation: (Rule) => Rule.required(),
     }),
