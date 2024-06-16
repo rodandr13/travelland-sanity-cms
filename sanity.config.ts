@@ -49,10 +49,6 @@ export default defineConfig({
                       .title('Category')
                       .child(S.documentTypeList('category')),
                     S.listItem()
-                      .schemaType('duration')
-                      .title('Duration')
-                      .child(S.documentTypeList('duration')),
-                    S.listItem()
                       .schemaType('excursionCategory')
                       .title('Excursion category')
                       .child(S.documentTypeList('excursionCategory')),
@@ -115,7 +111,6 @@ export default defineConfig({
                   'included',
                   'excursion',
                   'surcharge',
-                  'duration',
                   'startTime',
                   'media.tag',
                   'excursionCategory',

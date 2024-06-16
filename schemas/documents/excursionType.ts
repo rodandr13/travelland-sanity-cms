@@ -84,9 +84,9 @@ export const excursionType = defineType({
       name: 'description',
       type: 'text',
       title: 'Description',
-      description: 'Краткое описание экскурсии. Не более 800 символов',
+      description: 'Краткое описание экскурсии. Не более 1000 символов',
       group: 'content',
-      validation: (Rule) => Rule.required().max(800),
+      validation: (Rule) => Rule.required().max(1000),
     }),
     defineField({
       name: 'city',
@@ -316,12 +316,13 @@ export const excursionType = defineType({
       of: [defineArrayMember({type: 'reference', to: [{type: 'startTime'}]})],
     }),
     defineField({
-      name: 'duration',
-      type: 'reference',
-      title: 'Duration',
+      name: 'durationObject',
+      type: 'duration',
       description: 'Длительность экскурсии',
       group: 'schedule',
-      to: [{type: 'duration'}],
+      options: {
+        columns: 3,
+      },
     }),
     defineField({
       name: 'prices',

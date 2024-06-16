@@ -1,5 +1,4 @@
 import {defineField, defineType} from 'sanity'
-import {GenerateIcon} from '@sanity/icons'
 import {valueInternationalized} from '../../types'
 import {validateInternationalized} from '../../lib/validations'
 import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
@@ -8,7 +7,6 @@ export const meetingPlaceType = defineType({
   name: 'meetingPlaces',
   type: 'document',
   title: 'Meeting places',
-  icon: GenerateIcon,
   __experimental_formPreviewTitle: false,
   preview: {
     select: {

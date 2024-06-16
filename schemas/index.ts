@@ -8,7 +8,6 @@ import {scheduleType} from './objects/scheduleType'
 import {weekdaysSelectorType} from './objects/weekdaysSelectorType'
 import {timeValueType} from './objects/timeValueType'
 import {categoryType} from './documents/categoryType'
-import {durationType} from './documents/durationType'
 import {startTimeType} from './documents/startTimeType'
 import {placeType} from './documents/placeType'
 import {seoType} from './objects/seoType'
@@ -20,6 +19,7 @@ import {serviceType} from './documents/serviceType'
 import {settingsAppType} from './documents/settingsAppType'
 import {languageType} from './documents/languageType'
 import {groupSizeType} from './documents/groupSize'
+import {duration} from './objects/duration'
 
 export const schemaTypes = [
   excursionType,
@@ -32,7 +32,6 @@ export const schemaTypes = [
   weekdaysSelectorType,
   timeValueType,
   categoryType,
-  durationType,
   startTimeType,
   placeType,
   seoType,
@@ -44,4 +43,5 @@ export const schemaTypes = [
   settingsAppType,
   languageType,
   groupSizeType,
+  duration,
 ]
