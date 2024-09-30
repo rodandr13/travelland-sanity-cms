@@ -46,9 +46,9 @@ export const priceType = defineType({
           )
           const excursionCategoryId = excursionCategory._id
           const filter =
-            excursionCategoryId === '7d5275ef-b329-4373-a105-ce50d16d39f6'
-              ? 'groupSize'
-              : 'category'
+            excursionCategoryId === 'e8ffaead-8fbf-4fa0-95df-505a28a6e7e6'
+              ? 'category'
+              : 'groupSize'
           return {
             filter: '_type == $filter',
             params: {filter},

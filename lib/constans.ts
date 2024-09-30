@@ -1,2 +1,2 @@
 export const MAX_LENGTH_TITLE = 100
-export const MAX_LENGTH_DESCRIPTION = 2000
+export const MAX_LENGTH_DESCRIPTION = 4000
