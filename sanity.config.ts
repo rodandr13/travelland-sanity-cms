@@ -24,7 +24,7 @@ export default defineConfig({
   name: 'default',
   title: 'travelland',
   projectId: 'w6lmtfgf',
-  dataset: 'dev',
+  dataset: 'production',
 
   plugins: [
     structureTool({

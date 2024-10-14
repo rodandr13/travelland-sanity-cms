@@ -37,5 +37,12 @@ export const excursionCategoryType = defineType({
       title: 'Icon',
       validation: (Rule) => Rule.required(),
     }),
+    defineField({
+      name: 'key',
+      title: 'Key',
+      type: 'string',
+      description: 'Поле для разработчиков',
+      validation: (Rule) => Rule.required(),
+    }),
   ],
 })

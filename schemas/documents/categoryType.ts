@@ -40,5 +40,12 @@ export const categoryType = defineType({
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
         ),
     }),
+    defineField({
+      name: 'key',
+      title: 'Key',
+      type: 'string',
+      description: 'Поле для разработчиков',
+      validation: (Rule) => Rule.required(),
+    }),
   ],
 })
