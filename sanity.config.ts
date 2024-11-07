@@ -11,6 +11,7 @@ import {CogIcon, TagIcon} from '@sanity/icons'
 import './styles.css'
 
 import * as dotenv from 'dotenv'
+import {ruKZLocale} from '@sanity/locale-ru-kz'
 
 let googleMapsApiKey = import.meta.env?.SANITY_STUDIO_GOOGLE_MAPS_API_KEY
 if (!googleMapsApiKey) {
@@ -61,28 +62,28 @@ export default defineConfig({
                       .child(S.documentTypeList('excursionSubcategory')),
                     S.listItem()
                       .schemaType('groupSize')
-                      .title('Group size')
+                      .title('Размеры группы')
                       .child(S.documentTypeList('groupSize')),
                     S.listItem()
                       .schemaType('language')
-                      .title('Language')
+                      .title('Языки')
                       .child(S.documentTypeList('language')),
                     S.listItem()
                       .icon(TagIcon)
                       .schemaType('media.tag')
-                      .title('Media tags')
+                      .title('Медиа теги')
                       .child(S.documentTypeList('media.tag')),
                     S.listItem()
                       .schemaType('meetingPlaces')
-                      .title('Meeting place')
+                      .title('Места начала')
                       .child(S.documentTypeList('meetingPlaces')),
                     S.listItem()
                       .schemaType('included')
-                      .title('Included')
+                      .title('Включено в экскурсию')
                       .child(S.documentTypeList('included')),
                     S.listItem()
                       .schemaType('service')
-                      .title('Services')
+                      .title('Услуги')
                       .child(S.documentTypeList('service')),
                     S.listItem()
                       .schemaType('additionalTerms')
@@ -90,18 +91,18 @@ export default defineConfig({
                       .child(S.documentTypeList('additionalTerms')),
                     S.listItem()
                       .schemaType('startTime')
-                      .title('Start time')
+                      .title('Время начала')
                       .child(S.documentTypeList('startTime')),
                     S.listItem()
                       .schemaType('surcharge')
-                      .title('Surcharge')
+                      .title('Доплаты')
                       .child(S.documentTypeList('surcharge')),
                   ]),
               ),
             S.divider(),
             S.listItem()
               .icon(CogIcon)
-              .title('Site settings')
+              .title('Настройки')
               .child(S.editor().schemaType('settingsApp').documentId('settingsApp')),
             ...S.documentTypeListItems().filter(
               (item) =>
@@ -171,7 +172,9 @@ export default defineConfig({
         return true
       },
     }),
+    ruKZLocale(),
   ],
+
   schema: {
     types: schemaTypes,
   },
