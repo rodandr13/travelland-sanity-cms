@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const duration = defineType({
   name: 'duration',
-  title: 'Duration',
+  title: 'Длительность',
   type: 'object',
   initialValue: {
     days: 0,
@@ -12,7 +12,7 @@ export const duration = defineType({
   fields: [
     defineField({
       name: 'days',
-      title: 'Days',
+      title: 'Дни',
       type: 'number',
       options: {
         list: Array.from({length: 11}, (_, i) => i),
@@ -20,7 +20,7 @@ export const duration = defineType({
     }),
     defineField({
       name: 'hours',
-      title: 'Hours',
+      title: 'Часы',
       type: 'number',
       options: {
         list: Array.from({length: 25}, (_, i) => i),
@@ -28,7 +28,7 @@ export const duration = defineType({
     }),
     defineField({
       name: 'minutes',
-      title: 'Minutes',
+      title: 'Минуты',
       type: 'number',
       options: {
         list: [0, 30, 60],

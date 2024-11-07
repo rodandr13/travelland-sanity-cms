@@ -4,7 +4,7 @@ const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Sat
 
 export const weekdaysSelectorType = defineType({
   name: 'weekdaysSelector',
-  title: 'Days of the week',
+  title: 'Дни недели',
   type: 'array',
   of: [
     defineArrayMember({

@@ -4,7 +4,7 @@ import {UserIcon} from '@sanity/icons'
 export const priceType = defineType({
   type: 'object',
   name: 'price',
-  title: 'Price',
+  title: 'Цена',
   preview: {
     select: {
       categoryTitle: 'category.title',
@@ -30,8 +30,7 @@ export const priceType = defineType({
     defineField({
       type: 'reference',
       name: 'category',
-      title: 'Category',
-      description: 'Ценовая категория',
+      title: 'Ценовая категория',
       validation: (Rule) => Rule.required(),
       to: [{type: 'category'}, {type: 'groupSize'}],
       options: {
@@ -58,7 +57,7 @@ export const priceType = defineType({
     }),
     defineField({
       type: 'number',
-      description: 'Стоимость категории (€)',
+      title: 'Стоимость (€)',
       name: 'price',
       validation: (Rule) => Rule.required(),
     }),

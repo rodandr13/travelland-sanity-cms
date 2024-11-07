@@ -5,7 +5,7 @@ import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const categoryType = defineType({
   name: 'category',
-  title: 'Category',
+  title: 'Возрастная категория',
   type: 'document',
   __experimental_formPreviewTitle: false,
   preview: {
@@ -25,7 +25,7 @@ export const categoryType = defineType({
     defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),
@@ -34,7 +34,7 @@ export const categoryType = defineType({
     defineField({
       name: 'description',
       type: 'internationalizedArrayString',
-      title: 'Description',
+      title: 'Описание',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),

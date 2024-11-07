@@ -4,7 +4,7 @@ import {StatusBadgePreview} from '../../components/StatusBadgePreview'
 
 export const scheduleType = defineType({
   name: 'schedule',
-  title: 'Schedule',
+  title: 'Расписание',
   type: 'object',
   icon: ThListIcon,
   components: {
@@ -21,19 +21,19 @@ export const scheduleType = defineType({
     defineField({
       name: 'title',
       type: 'string',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) => Rule.required().min(2).max(100),
     }),
     defineField({
       name: 'dates',
-      title: 'Dates',
+      title: 'Даты активности',
       type: 'object',
       validation: (Rule) => Rule.required(),
       fields: [
         defineField({
           name: 'dateFrom',
           type: 'date',
-          title: 'From',
+          title: 'От',
           validation: (Rule) => Rule.required(),
           options: {
             dateFormat: 'DD.MM.YYYY',
@@ -42,7 +42,7 @@ export const scheduleType = defineType({
         defineField({
           name: 'dateTo',
           type: 'date',
-          title: 'To',
+          title: 'До',
           validation: (Rule) => Rule.required(),
           options: {
             dateFormat: 'DD.MM.YYYY',
@@ -56,13 +56,13 @@ export const scheduleType = defineType({
     defineField({
       name: 'weekdays',
       type: 'weekdaysSelector',
-      title: 'Days of the week',
+      title: 'Дни недели',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'prices',
       type: 'array',
-      title: 'Prices',
+      title: 'Цены',
       validation: (Rule) => Rule.required(),
       of: [
         defineArrayMember({

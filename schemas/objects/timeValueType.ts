@@ -2,7 +2,7 @@ import {defineType} from 'sanity'
 
 export const timeValueType = defineType({
   name: 'timeValue',
-  title: 'Time',
+  title: 'Время',
   type: 'string',
   options: {
     list: ALLOWED_TIMES(),

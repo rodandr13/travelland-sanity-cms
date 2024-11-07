@@ -3,7 +3,7 @@ import {defineField, defineType} from 'sanity'
 export const groupSizeType = defineType({
   name: 'groupSize',
   type: 'document',
-  title: 'Group size',
+  title: 'Размер группы',
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
@@ -20,7 +20,7 @@ export const groupSizeType = defineType({
     defineField({
       name: 'title',
       type: 'number',
-      title: 'Title',
+      title: 'Количество человек',
       validation: (Rule) => Rule.required(),
     }),
   ],

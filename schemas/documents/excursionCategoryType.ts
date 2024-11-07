@@ -5,7 +5,7 @@ import {MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const excursionCategoryType = defineType({
   name: 'excursionCategory',
-  title: 'Excursion category',
+  title: 'Тип экскурсии',
   type: 'document',
   __experimental_formPreviewTitle: false,
   preview: {
@@ -25,7 +25,7 @@ export const excursionCategoryType = defineType({
     defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),
@@ -34,7 +34,7 @@ export const excursionCategoryType = defineType({
     defineField({
       name: 'icon',
       type: 'image',
-      title: 'Icon',
+      title: 'Иконка',
       validation: (Rule) => Rule.required(),
     }),
     defineField({

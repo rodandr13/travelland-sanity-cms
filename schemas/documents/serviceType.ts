@@ -1,11 +1,11 @@
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 import {validateInternationalized} from '../../lib/validations'
 import {valueInternationalized} from '../../types'
 import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const serviceType = defineType({
   name: 'service',
-  title: 'Service',
+  title: 'Услуги',
   type: 'document',
   __experimental_formPreviewTitle: false,
   preview: {
@@ -24,7 +24,7 @@ export const serviceType = defineType({
     defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),
@@ -33,7 +33,7 @@ export const serviceType = defineType({
     defineField({
       name: 'description',
       type: 'internationalizedArrayText',
-      title: 'Description',
+      title: 'Описание',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
@@ -42,7 +42,7 @@ export const serviceType = defineType({
     defineField({
       name: 'image',
       type: 'image',
-      title: 'Image',
+      title: 'Фото',
       validation: (Rule) => Rule.required(),
     }),
   ],

@@ -33,28 +33,31 @@ export default defineConfig({
           .title('Content')
           .items([
             S.divider(),
-            S.listItem().icon(MdMap).title('Excursion').child(S.documentTypeList('excursion')),
-            S.listItem().icon(MdApartment).title('City').child(S.documentTypeList('city')),
-            S.listItem().icon(MdTour).title('Country').child(S.documentTypeList('country')),
-            S.listItem().icon(MdRoom).title('Place').child(S.documentTypeList('place')),
+            S.listItem().icon(MdMap).title('Экскурсии').child(S.documentTypeList('excursion')),
+            S.listItem().icon(MdApartment).title('Города').child(S.documentTypeList('city')),
+            S.listItem().icon(MdTour).title('Страны').child(S.documentTypeList('country')),
+            S.listItem()
+              .icon(MdRoom)
+              .title('Достопримечательности')
+              .child(S.documentTypeList('place')),
             S.divider(),
             S.listItem()
-              .title('Collections')
+              .title('Коллекции')
               .child(
                 S.list()
-                  .title('Collections')
+                  .title('Коллекции')
                   .items([
                     S.listItem()
                       .schemaType('category')
-                      .title('Category')
+                      .title('Возрастные категории')
                       .child(S.documentTypeList('category')),
                     S.listItem()
                       .schemaType('excursionCategory')
-                      .title('Excursion category')
+                      .title('Типы экскурсии')
                       .child(S.documentTypeList('excursionCategory')),
                     S.listItem()
                       .schemaType('excursionSubcategory')
-                      .title('Excursion subcategory')
+                      .title('Подтипы экскурсии')
                       .child(S.documentTypeList('excursionSubcategory')),
                     S.listItem()
                       .schemaType('groupSize')
@@ -83,7 +86,7 @@ export default defineConfig({
                       .child(S.documentTypeList('service')),
                     S.listItem()
                       .schemaType('additionalTerms')
-                      .title('Additional terms')
+                      .title('Дополнительные условия')
                       .child(S.documentTypeList('additionalTerms')),
                     S.listItem()
                       .schemaType('startTime')

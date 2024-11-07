@@ -5,7 +5,7 @@ import {PhysicalActivityInput} from '../../components/PhysicalActivityInput'
 export const excursionType = defineType({
   name: 'excursion',
   type: 'document',
-  title: 'Excursion',
+  title: 'Экскурсия',
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
@@ -25,43 +25,43 @@ export const excursionType = defineType({
   groups: [
     {
       name: 'content',
-      title: 'Content',
+      title: 'Контент',
       default: true,
     },
     {
       name: 'options',
-      title: 'Options',
+      title: 'Опции',
     },
     {
       name: 'parameters',
-      title: 'Parameters',
+      title: 'Параметры',
     },
     {
       name: 'places',
-      title: 'Places',
+      title: 'Места посещения',
     },
     {
       name: 'schedule',
-      title: 'Schedule',
+      title: 'Расписание',
     },
     {
       name: 'prices',
-      title: 'Prices',
+      title: 'Цены',
     },
     {
       name: 'media',
-      title: 'Media',
+      title: 'Медиа',
     },
     {
       name: 'seo',
-      title: 'SEO',
+      title: 'СЕО',
     },
   ],
   fields: [
     defineField({
       name: 'title',
       type: 'string',
-      title: 'Title',
+      title: 'Название',
       description:
         'Название экскурсии. Желательно не использовать слово "экскурсия" в названии, а также принадлежность к типу (индивидуальная, пешеходная и тп.)',
       group: 'content',
@@ -83,7 +83,7 @@ export const excursionType = defineType({
     defineField({
       name: 'description',
       type: 'text',
-      title: 'Description',
+      title: 'Описание',
       description: 'Краткое описание экскурсии. Не более 1000 символов',
       group: 'content',
       validation: (Rule) => Rule.required().max(1000),
@@ -91,8 +91,8 @@ export const excursionType = defineType({
     defineField({
       name: 'city',
       type: 'reference',
-      title: 'Excursion starting city',
-      description: 'Город начала экскурсии',
+      title: 'Город',
+      description: 'Откуда стартует экскурсия',
       group: 'options',
       validation: (Rule) => Rule.required(),
       to: [{type: 'city'}],
@@ -100,8 +100,8 @@ export const excursionType = defineType({
     defineField({
       name: 'excursionCategory',
       type: 'reference',
-      title: 'Type',
-      description: 'Тип экскурсии. Используется для фильтров',
+      title: 'Тип',
+      description: 'Используется для фильтров',
       group: 'options',
       validation: (Rule) => Rule.required(),
       to: [{type: 'excursionCategory'}],
@@ -109,8 +109,8 @@ export const excursionType = defineType({
     defineField({
       name: 'excursionSubcategory',
       type: 'array',
-      title: 'Subtype',
-      description: 'Подтип экскурсии. Может быть выбрано несколько. Используется для фильтров',
+      title: 'Подтип',
+      description: 'Может быть выбрано несколько. Используется для фильтров',
       group: 'options',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'excursionSubcategory'}]})],
@@ -118,8 +118,8 @@ export const excursionType = defineType({
     defineField({
       name: 'included',
       type: 'array',
-      title: 'Whats included',
-      description: 'Что включено в экскурсию. Опции, которые выводятся списком в описании',
+      title: 'Включено в экскурсию',
+      description: 'Опции, которые выводятся списком в описании',
       group: 'options',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'included'}]})],
@@ -127,7 +127,7 @@ export const excursionType = defineType({
     defineField({
       name: 'surcharge',
       type: 'array',
-      title: 'Surcharges',
+      title: 'Дополнительно оплачивается',
       description: 'Доплаты, которые не включены в экскурсию',
       group: 'options',
       validation: (Rule) => Rule.required(),
@@ -136,7 +136,7 @@ export const excursionType = defineType({
     defineField({
       name: 'additionalTerms',
       type: 'array',
-      title: 'Additional terms',
+      title: 'Дополнительные условия',
       description: 'Скорее всего вам не нужно тут ничего выбирать',
       group: 'options',
       of: [defineArrayMember({type: 'reference', to: [{type: 'additionalTerms'}]})],
@@ -144,7 +144,7 @@ export const excursionType = defineType({
     defineField({
       name: 'language',
       type: 'array',
-      title: 'Language',
+      title: 'Язык',
       description: 'Языки на которых проводится экскурсия',
       group: 'parameters',
       validation: (Rule) => Rule.required(),
@@ -153,7 +153,7 @@ export const excursionType = defineType({
     defineField({
       name: 'physicalActivity',
       type: 'number',
-      title: 'Physical activity',
+      title: 'Требуемая физическая активность',
       group: 'parameters',
       validation: (Rule) => Rule.required().min(1).max(10),
       components: {input: PhysicalActivityInput},
@@ -161,7 +161,7 @@ export const excursionType = defineType({
     defineField({
       name: 'groupSize',
       type: 'reference',
-      title: 'Group size',
+      title: 'Размер группы',
       description:
         'Данный параметр размера группы нужен только для описания, отображается на странице экскурсии под описанием',
       group: 'parameters',
@@ -171,7 +171,7 @@ export const excursionType = defineType({
     defineField({
       name: 'adultsOnly',
       type: 'boolean',
-      title: 'Adults only',
+      title: 'Только для взрослых',
       description:
         'Выбрать только если экскурсия для взрослых. Опция отвечает за отображении в описании параметра "Можно с детьми", если неактивно, значит можно. По-умолчанию неактивно',
       group: 'parameters',
@@ -180,8 +180,8 @@ export const excursionType = defineType({
     defineField({
       name: 'visitCountries',
       type: 'array',
-      title: 'Countries to visit',
-      description: 'Страны посещения экскурсии. Порядок не имеет значения',
+      title: 'Страны посещения',
+      description: 'Фильтрует города посещения',
       group: 'places',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'country'}]})],
@@ -189,8 +189,8 @@ export const excursionType = defineType({
     defineField({
       name: 'visitCities',
       type: 'array',
-      title: 'Cities to visit',
-      description: 'Города посещения экскурсии. Порядок не имеет значения',
+      title: 'Города посещения',
+      description: 'Фильтрует места посещения',
       group: 'places',
       validation: (Rule) =>
         Rule.custom((value, {document}) => {
@@ -234,8 +234,8 @@ export const excursionType = defineType({
     defineField({
       name: 'route',
       type: 'array',
-      title: 'Places to visit',
-      description: 'Места, которые посещаются на экскурсии. Порядок не имеет значения',
+      title: 'Места посещения',
+      description: 'Места, которые посещаются на экскурсии. Порядок имеет значения',
       group: 'places',
       validation: (Rule) =>
         Rule.custom((value, {document}) => {
@@ -280,7 +280,7 @@ export const excursionType = defineType({
     defineField({
       name: 'gallery',
       type: 'array',
-      title: 'Gallery',
+      title: 'Галерея',
       description:
         'Фотографии экскурсии для галереи. Первая фотография всегда используется на превью',
       group: 'media',
@@ -305,7 +305,7 @@ export const excursionType = defineType({
     defineField({
       name: 'startingPlace',
       type: 'reference',
-      title: 'Starting place',
+      title: 'Начало экскурсии',
       description: 'Место сбора где начинается экскурсия',
       group: 'schedule',
       to: [{type: 'meetingPlaces'}],
@@ -333,7 +333,7 @@ export const excursionType = defineType({
     defineField({
       name: 'endingPlace',
       type: 'reference',
-      title: 'Ending place',
+      title: 'Окончания экскурсии',
       description: 'Место завершения экскурсии',
       group: 'schedule',
       to: [{type: 'meetingPlaces'}],
@@ -360,7 +360,7 @@ export const excursionType = defineType({
     }),
     defineField({
       name: 'dates',
-      title: 'Activity dates',
+      title: 'Даты расписания',
       description: 'Даты активности экскурсии. Используется для расчета цен',
       type: 'object',
       options: {
@@ -372,7 +372,7 @@ export const excursionType = defineType({
         defineField({
           name: 'dateFrom',
           type: 'date',
-          title: 'From',
+          title: 'От',
           validation: (Rule) => Rule.required(),
           options: {
             dateFormat: 'DD.MM.YYYY',
@@ -381,7 +381,7 @@ export const excursionType = defineType({
         defineField({
           name: 'dateTo',
           type: 'date',
-          title: 'To',
+          title: 'До',
           validation: (Rule) => Rule.required(),
           options: {
             dateFormat: 'DD.MM.YYYY',
@@ -392,7 +392,7 @@ export const excursionType = defineType({
     defineField({
       name: 'weekdays',
       type: 'weekdaysSelector',
-      title: 'Days of the week',
+      title: 'Дни недели',
       description: 'Дни недели по которым проводится экскурсия',
       group: 'schedule',
       validation: (Rule) => Rule.required(),
@@ -400,8 +400,8 @@ export const excursionType = defineType({
     defineField({
       name: 'startTime',
       type: 'array',
-      title: 'Time start',
-      description: 'Время начала. Может быть выбрано несколько вариантов',
+      title: 'Время начала',
+      description: 'Может быть выбрано несколько вариантов',
       group: 'schedule',
       validation: (Rule) => Rule.required(),
       of: [defineArrayMember({type: 'reference', to: [{type: 'startTime'}]})],
@@ -409,7 +409,7 @@ export const excursionType = defineType({
     defineField({
       name: 'durationObject',
       type: 'duration',
-      description: 'Длительность экскурсии',
+      title: 'Длительность экскурсии',
       group: 'schedule',
       options: {
         columns: 3,
@@ -418,8 +418,8 @@ export const excursionType = defineType({
     defineField({
       name: 'prices',
       type: 'array',
-      title: 'Base prices',
-      description: 'Базовые цены на экскурсию с учетом расписания',
+      title: 'Базовые цены',
+      description: 'Цены на экскурсию с учетом расписания',
       group: 'prices',
       readOnly: ({document}) => {
         return Boolean(!document?.excursionCategory)
@@ -439,8 +439,8 @@ export const excursionType = defineType({
     }),
     defineField({
       name: 'priceCorrections',
-      title: 'Price corrections',
-      description: 'Коррекция расписания. Больший приоритет, чем у базовых цен',
+      title: 'Коррекция расписания',
+      description: 'Больший приоритет, чем у базовых цен',
       type: 'array',
       group: 'prices',
       readOnly: ({document}) => {
@@ -457,8 +457,8 @@ export const excursionType = defineType({
     }),
     defineField({
       name: 'promotionalPrices',
-      title: 'Promotional prices',
-      description: 'Акционные цены. Наивысший приоритет среди цен',
+      title: 'Акционные цены',
+      description: 'Наивысший приоритет среди цен',
       type: 'array',
       group: 'prices',
       readOnly: ({document}) => {

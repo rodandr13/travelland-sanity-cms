@@ -6,7 +6,7 @@ import {MAX_LENGTH_TITLE} from '../../lib/constans'
 export const includedType = defineType({
   name: 'included',
   type: 'document',
-  title: 'Whats included',
+  title: 'Включено в экскурсию',
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
@@ -23,7 +23,7 @@ export const includedType = defineType({
     defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),

@@ -6,7 +6,7 @@ import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 export const meetingPlaceType = defineType({
   name: 'meetingPlaces',
   type: 'document',
-  title: 'Meeting places',
+  title: 'Место начала экскурсии',
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
@@ -21,25 +21,25 @@ export const meetingPlaceType = defineType({
   },
   fields: [
     defineField({
-      name: 'city',
-      type: 'reference',
-      title: 'City',
-      validation: (Rule) => Rule.required(),
-      to: [{type: 'city'}],
-    }),
-    defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),
         ),
     }),
     defineField({
+      name: 'city',
+      type: 'reference',
+      title: 'Город',
+      validation: (Rule) => Rule.required(),
+      to: [{type: 'city'}],
+    }),
+    defineField({
       name: 'description',
       type: 'internationalizedArrayText',
-      title: 'Description',
+      title: 'Описание',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
@@ -48,13 +48,13 @@ export const meetingPlaceType = defineType({
     defineField({
       name: 'image',
       type: 'image',
-      title: 'Image',
+      title: 'Фото',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'location',
       type: 'geopoint',
-      title: 'Location',
+      title: 'Геолокация',
     }),
   ],
 })

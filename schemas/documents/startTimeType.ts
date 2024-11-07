@@ -2,7 +2,7 @@ import {defineField, defineType} from 'sanity'
 
 export const startTimeType = defineType({
   name: 'startTime',
-  title: 'Start time',
+  title: 'Время начала',
   type: 'document',
   description: 'Excursion start time',
   __experimental_formPreviewTitle: false,
@@ -20,7 +20,7 @@ export const startTimeType = defineType({
   fields: [
     defineField({
       name: 'time',
-      title: 'Time',
+      title: 'Время',
       type: 'timeValue',
       validation: (Rule) => Rule.required(),
     }),

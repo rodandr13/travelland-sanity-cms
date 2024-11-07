@@ -5,7 +5,7 @@ import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
 
 export const placeType = defineType({
   name: 'place',
-  title: 'Place',
+  title: 'Достопримечательность',
   type: 'document',
   __experimental_formPreviewTitle: false,
   preview: {
@@ -27,14 +27,14 @@ export const placeType = defineType({
     defineField({
       name: 'city',
       type: 'reference',
-      title: 'City',
+      title: 'Город',
       validation: (Rule) => Rule.required(),
       to: [{type: 'city'}],
     }),
     defineField({
       name: 'title',
       type: 'internationalizedArrayString',
-      title: 'Title',
+      title: 'Название',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_TITLE),
@@ -43,7 +43,7 @@ export const placeType = defineType({
     defineField({
       name: 'description',
       type: 'internationalizedArrayText',
-      title: 'Description',
+      title: 'Описание',
       validation: (Rule) =>
         Rule.custom((value: valueInternationalized[]) =>
           validateInternationalized(value, MAX_LENGTH_DESCRIPTION),
@@ -52,7 +52,7 @@ export const placeType = defineType({
     defineField({
       name: 'gallery',
       type: 'array',
-      title: 'Gallery',
+      title: 'Галерея',
       validation: (Rule) => Rule.required(),
       of: [
         defineArrayMember({

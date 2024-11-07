@@ -2,25 +2,25 @@ import {defineField, defineType} from 'sanity'
 
 export const settingsAppType = defineType({
   name: 'settingsApp',
-  title: 'Settings',
+  title: 'Настройки',
   type: 'document',
   __experimental_formPreviewTitle: false,
   preview: {
     prepare: () => {
       return {
-        title: 'Settings',
+        title: 'Настройки',
       }
     },
   },
   fields: [
     defineField({
       name: 'heroTitle',
-      title: 'Hero Title',
+      title: 'Заголовок на главной',
       type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'heroImage',
-      title: 'Hero image',
+      title: 'Фото для главной',
       type: 'image',
       options: {
         hotspot: true,
@@ -28,7 +28,7 @@ export const settingsAppType = defineType({
     }),
     defineField({
       name: 'languageIcon',
-      title: 'Language icon',
+      title: 'Иконка для языка',
       type: 'image',
     }),
   ],

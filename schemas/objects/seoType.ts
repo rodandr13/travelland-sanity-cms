@@ -2,10 +2,10 @@ import {defineField, defineType} from 'sanity'
 
 export const seoType = defineType({
   name: 'seo',
-  title: 'SEO',
+  title: 'СЕО',
   type: 'object',
   fields: [
-    defineField({name: 'title', type: 'string'}),
-    defineField({name: 'description', type: 'text'}),
+    defineField({name: 'title', type: 'string', title: 'Заголовок'}),
+    defineField({name: 'description', type: 'text', title: 'Описание'}),
   ],
 })
