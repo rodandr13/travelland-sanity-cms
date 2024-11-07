@@ -12,10 +12,13 @@ export const placeType = defineType({
     select: {
       image: 'gallery.0.asset',
       title: 'title.0.value',
+      cityTitle: 'city.title.0.value',
+      countryTitle: 'city.country.title.0.value',
     },
-    prepare: ({image, title}) => {
+    prepare: ({image, title, cityTitle, countryTitle}) => {
       return {
         title: title,
+        subtitle: `${countryTitle} / ${cityTitle}`,
         media: image,
       }
     },

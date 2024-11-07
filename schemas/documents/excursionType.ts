@@ -178,13 +178,104 @@ export const excursionType = defineType({
       validation: (Rule) => Rule.required(),
     }),
     defineField({
+      name: 'visitCountries',
+      type: 'array',
+      title: 'Countries to visit',
+      description: 'Страны посещения экскурсии. Порядок не имеет значения',
+      group: 'places',
+      validation: (Rule) => Rule.required(),
+      of: [defineArrayMember({type: 'reference', to: [{type: 'country'}]})],
+    }),
+    defineField({
+      name: 'visitCities',
+      type: 'array',
+      title: 'Cities to visit',
+      description: 'Города посещения экскурсии. Порядок не имеет значения',
+      group: 'places',
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.visitCountries || document.visitCountries.length === 0) {
+            return 'Необходимо выбрать страны посещения'
+          }
+          return true
+        }).required(),
+      readOnly: ({document}) => {
+        const selectedCountries = document?.visitCountries || []
+        return selectedCountries.length === 0
+      },
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{type: 'city'}],
+          options: {
+            filter: ({document}) => {
+              const selectedCountryIds = (document.visitCountries || [])
+                .map((ref: any) => ref._ref)
+                .filter(Boolean)
+
+              if (!selectedCountryIds.length) {
+                return {
+                  filter: 'false',
+                }
+              }
+
+              return {
+                filter: 'country._ref in $countryIds',
+                params: {
+                  countryIds: selectedCountryIds,
+                },
+              }
+            },
+            disableNew: true,
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: 'route',
       type: 'array',
       title: 'Places to visit',
       description: 'Места, которые посещаются на экскурсии. Порядок не имеет значения',
       group: 'places',
-      validation: (Rule) => Rule.required(),
-      of: [defineArrayMember({type: 'reference', to: [{type: 'place'}]})],
+      validation: (Rule) =>
+        Rule.custom((value, {document}) => {
+          if (!document?.visitCities || document.visitCities.length === 0) {
+            return 'Необходимо выбрать города посещения'
+          }
+          return true
+        }).required(),
+      readOnly: ({document}) => {
+        const selectedCities = document?.visitCities || []
+        return selectedCities.length === 0
+      },
+      of: [
+        defineArrayMember({
+          type: 'reference',
+          to: [{type: 'place'}],
+          options: {
+            filter: ({document}) => {
+              const selectedCityIds = (document.visitCities || [])
+                .map((ref) => ref._ref)
+                .filter(Boolean)
+
+              if (!selectedCityIds.length) {
+                return {
+                  filter: 'false',
+                  message: 'Сначала выберите города в поле "Cities to visit"',
+                }
+              }
+
+              return {
+                filter: 'city._ref in $cityIds',
+                params: {
+                  cityIds: selectedCityIds,
+                },
+              }
+            },
+            disableNew: true,
+          },
+        }),
+      ],
     }),
     defineField({
       name: 'gallery',
