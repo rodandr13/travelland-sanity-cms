@@ -226,7 +226,6 @@ export const excursionType = defineType({
                 },
               }
             },
-            disableNew: true,
           },
         }),
       ],
@@ -272,7 +271,6 @@ export const excursionType = defineType({
                 },
               }
             },
-            disableNew: true,
           },
         }),
       ],
