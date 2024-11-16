@@ -231,7 +231,7 @@ export const excursionType = defineType({
       ],
     }),
     defineField({
-      name: 'route',
+      name: 'visitPlaces',
       type: 'array',
       title: 'Места посещения',
       description: 'Места, которые посещаются на экскурсии. Порядок имеет значения',
