@@ -20,6 +20,7 @@ import {settingsAppType} from './documents/settingsAppType'
 import {languageType} from './documents/languageType'
 import {groupSizeType} from './documents/groupSize'
 import {duration} from './objects/duration'
+import {dayRoute} from './objects/dayRoute'
 
 export const schemaTypes = [
   excursionType,
@@ -44,4 +45,5 @@ export const schemaTypes = [
   languageType,
   groupSizeType,
   duration,
+  dayRoute,
 ]
