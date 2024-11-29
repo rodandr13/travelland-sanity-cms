@@ -7,7 +7,7 @@ export const groupSizeType = defineType({
   __experimental_formPreviewTitle: false,
   preview: {
     select: {
-      title: 'title',
+      title: 'size',
     },
     prepare: (selection) => {
       const {title} = selection
@@ -18,7 +18,7 @@ export const groupSizeType = defineType({
   },
   fields: [
     defineField({
-      name: 'title',
+      name: 'size',
       type: 'number',
       title: 'Количество человек',
       validation: (Rule) => Rule.required(),

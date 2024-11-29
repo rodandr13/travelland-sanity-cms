@@ -8,14 +8,15 @@ export const priceType = defineType({
   preview: {
     select: {
       categoryTitle: 'category.title',
+      categorySize: 'category.size',
       categoryDescription: 'category.description.0.value',
       price: 'price',
     },
     prepare: (selection) => {
-      const {categoryTitle, categoryDescription, price} = selection
+      const {categoryTitle, categoryDescription, price, categorySize} = selection
       let title
-      if (typeof categoryTitle === 'number') {
-        title = `До ${categoryTitle} человек`
+      if (categorySize) {
+        title = `До ${categorySize} человек`
       } else {
         title = categoryTitle[0].value
       }

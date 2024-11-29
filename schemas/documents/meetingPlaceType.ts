@@ -1,4 +1,4 @@
-import {defineField, defineType} from 'sanity'
+import {defineArrayMember, defineField, defineType} from 'sanity'
 import {valueInternationalized} from '../../types'
 import {validateInternationalized} from '../../lib/validations'
 import {MAX_LENGTH_DESCRIPTION, MAX_LENGTH_TITLE} from '../../lib/constans'
@@ -50,6 +50,23 @@ export const meetingPlaceType = defineType({
       type: 'image',
       title: 'Фото',
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: 'gallery',
+      type: 'array',
+      title: 'Галерея',
+      validation: (Rule) => Rule.required(),
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {
+            hotspot: true,
+          },
+        }),
+      ],
+      options: {
+        layout: 'grid',
+      },
     }),
     defineField({
       name: 'location',
